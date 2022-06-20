@@ -22,13 +22,13 @@ class _BodyState extends State<Body> {
       "imageURL": "assets/images/splash_1.png",
     },
     {
-      "title": "We Focus on Providing a Comfortable Place for You",
+      "title": "We Focus on Providing a Comfortable\nPlace for You",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
       "imageURL": "assets/images/splash_2.png",
     },
     {
-      "title": "Find your Beloved Family's Dream House with us",
+      "title": "Find your Beloved Family's Dream\nHouse with us",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
       "imageURL": "assets/images/splash_3.png",
@@ -103,11 +103,7 @@ class _BodyState extends State<Body> {
                                   .pushReplacementNamed(SignIn.routeName);
                             },
                             text: "Continue")
-                        : defaultButton(
-                            press: () {
-                              currentIndex = currentIndex++;
-                            },
-                            text: "Continue"),
+                        : defaultButton(press: () {}, text: "Continue"),
                   ),
                   Spacer(),
                 ],
