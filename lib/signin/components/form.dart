@@ -103,7 +103,7 @@ class _FormFieldsState extends State<FormFields> {
             ],
           ),
           SizedBox(
-            height: 10.h,
+            height: 16.h,
           ),
           defaultButton(text: "Sign up", press: () {}),
         ],

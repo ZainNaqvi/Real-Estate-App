@@ -57,11 +57,11 @@ class Body extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 16.h,
+              height: 24.h,
             ),
             SocialLinks(),
             SizedBox(
-              height: 16.h,
+              height: 24.h,
             ),
             footer(
               text: "Already have an account? ",
