@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/widget/default.dart';
 
 import '../../widget/suffixIcon.dart';
 import '../../widget/validator.dart';
@@ -63,16 +64,48 @@ class _FormFieldsState extends State<FormFields> {
           ),
           TextFormField(
             validator: emailValidator,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.next,
+            obscureText: true,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
               hintText: "Password",
               enabledBorder: customOutlineBorder(),
+              suffixIcon: suffixicon(icon: Icons.remove_red_eye),
               focusedBorder: customOutlineBorder(),
               border: customOutlineBorder(),
             ),
           ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Row(
+            children: [
+              Checkbox(
+                value: false,
+                onChanged: (value) {},
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                side: BorderSide(
+                  color: Colors.blue,
+                ),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Text(
+                "Remember me",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          defaultButton(text: "Sign up", press: () {}),
         ],
       ),
     );
