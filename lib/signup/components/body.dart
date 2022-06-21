@@ -2,10 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/forgot/forgotPassword.dart';
 import 'package:houses_olx/signin/signin.dart';
 import 'package:houses_olx/signup/components/form.dart';
-import 'package:houses_olx/signup/signup.dart';
 import 'package:houses_olx/widget/footer.dart';
 import 'package:houses_olx/widget/sociallinks.dart';
 
@@ -24,7 +22,7 @@ class Body extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              "Sign in to your account",
+              "Sign up for free",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
@@ -35,20 +33,6 @@ class Body extends StatelessWidget {
               height: 24.h,
             ),
             FormFields(),
-            SizedBox(
-              height: 24.h,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(ForgotScreen.routeName);
-              },
-              child: Text(
-                "Forgot password?",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
             SizedBox(
               height: 24.h,
             ),
@@ -81,11 +65,11 @@ class Body extends StatelessWidget {
               height: 24.h,
             ),
             footer(
-              text: "Don't have an account? ",
+              text: "Already have an account? ",
               press: () {
-                Navigator.of(context).pushNamed(SignUp.routeName);
+                Navigator.of(context).pushNamed(Signin.routeName);
               },
-              linkText: "Sign up",
+              linkText: "Sign in",
               color: Colors.grey,
               linkColor: Colors.blue,
             )

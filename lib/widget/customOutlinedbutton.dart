@@ -10,6 +10,7 @@ OutlinedButton customOutLinedBUtton({
 }) {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
+        primary: Colors.white,
         backgroundColor: Colors.blue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

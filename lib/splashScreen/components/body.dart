@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/signin/signin.dart';
+import 'package:houses_olx/signup/signup.dart';
 import 'package:houses_olx/splashScreen/components/splashstats.dart';
 import 'package:houses_olx/splashScreen/components/splastDots.dart';
 
@@ -80,7 +80,7 @@ class _BodyState extends State<Body> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context)
-                          .pushReplacementNamed(SignIn.routeName);
+                          .pushReplacementNamed(SignUp.routeName);
                     },
                     child: Text(
                       "Skip",
@@ -100,7 +100,7 @@ class _BodyState extends State<Body> {
                         ? defaultButton(
                             press: () {
                               Navigator.of(context)
-                                  .pushReplacementNamed(SignIn.routeName);
+                                  .pushReplacementNamed(SignUp.routeName);
                             },
                             text: "Continue")
                         : defaultButton(press: () {}, text: "Continue"),
