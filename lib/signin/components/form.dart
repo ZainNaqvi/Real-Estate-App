@@ -160,7 +160,7 @@ class _FormFieldsState extends State<FormFields> {
             height: 16.h,
           ),
           defaultButton(
-              text: "Sign up",
+              text: "Sign in",
               press: () {
                 submitForm();
               }),
