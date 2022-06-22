@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:houses_olx/otp/otpScreen.dart';
+
 import '../../widget/customOutlineBorder.dart';
 import '../../widget/default.dart';
-import '../../widget/suffixIcon.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 104.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 160.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,7 +63,15 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: 72.h,
                 ),
-                defaultButton(text: "SEND CODE", press: () {}),
+                defaultButton(
+                    text: "Send",
+                    press: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OtpScreen(
+                          value: _userNumberController.text,
+                        ),
+                      ));
+                    }),
               ],
             ),
           ],
