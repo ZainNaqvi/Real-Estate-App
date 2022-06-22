@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:houses_olx/smsOTP/smsOTP.dart';
 
 import '../../widget/default.dart';
 
@@ -39,8 +39,8 @@ class Body extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) => SmsOTP()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SmsOtpScreen()));
             },
             child: Row(
               children: [

@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset("assets/images/splash_3.png"),
+            Image.asset("assets/images/house2.jpg"),
             SizedBox(
               height: 10.h,
             ),

@@ -19,19 +19,19 @@ class _BodyState extends State<Body> {
       "title": "The Biggest Real Estate App\nof the Century",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/splash_1.png",
+      "imageURL": "assets/images/house1.jpg",
     },
     {
-      "title": "We Focus on Providing a Comfortable\nPlace for You",
+      "title": "We Focus on Providing a\nComfortable Place for You",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/splash_2.png",
+      "imageURL": "assets/images/house2.jpg",
     },
     {
       "title": "Find your Beloved Family's Dream\nHouse with us",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/splash_3.png",
+      "imageURL": "assets/images/house1.jpg",
     },
   ];
 
@@ -63,50 +63,53 @@ class _BodyState extends State<Body> {
             ),
             Expanded(
               flex: 2,
-              child: Column(
-                children: [
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      items.length,
-                      (index) =>
-                          splashDots(index: index, currentIndex: currentIndex),
-                    ),
-                  ),
-                  Spacer(
-                    flex: 3,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(SignUp.routeName);
-                    },
-                    child: Text(
-                      "Skip",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        items.length,
+                        (index) => splashDots(
+                            index: index, currentIndex: currentIndex),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: currentIndex == 2
-                        ? defaultButton(
-                            press: () {
-                              Navigator.of(context)
-                                  .pushReplacementNamed(SignUp.routeName);
-                            },
-                            text: "Continue")
-                        : defaultButton(press: () {}, text: "Continue"),
-                  ),
-                  Spacer(),
-                ],
+                    Spacer(
+                      flex: 3,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(SignUp.routeName);
+                      },
+                      child: Text(
+                        "Skip",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: currentIndex == 2
+                          ? defaultButton(
+                              press: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed(SignUp.routeName);
+                              },
+                              text: "Continue")
+                          : defaultButton(press: () {}, text: "Continue"),
+                    ),
+                    Spacer(),
+                  ],
+                ),
               ),
             ),
           ],

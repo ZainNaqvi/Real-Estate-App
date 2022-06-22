@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ElevatedButton defaultButton(
     {required String text, required VoidCallback press}) {
@@ -7,7 +8,7 @@ ElevatedButton defaultButton(
     style: ElevatedButton.styleFrom(
       shape: StadiumBorder(),
       primary: Colors.blue,
-      minimumSize: Size(double.infinity, 60),
+      minimumSize: Size(double.infinity, 46.h),
     ),
     onPressed: press,
     child: Text(
@@ -15,7 +16,7 @@ ElevatedButton defaultButton(
       style: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.bold,
-        fontSize: 20,
+        fontSize: 22.sp,
       ),
     ),
   );
