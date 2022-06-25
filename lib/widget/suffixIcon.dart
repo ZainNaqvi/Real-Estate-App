@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget suffixicon({required IconData icon, required VoidCallback press}) {
+Widget suffixicon({required IconData? icon, required VoidCallback press}) {
   return InkWell(
     onTap: press,
     child: Padding(

@@ -11,9 +11,14 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 68.h),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 20.w,
+          right: 20.w,
+          top: 68.h,
+          bottom: 4.h,
+        ),
         child: Column(
           children: [
             Padding(
@@ -33,7 +38,7 @@ class Body extends StatelessWidget {
             ),
             FormFields(),
             SizedBox(
-              height: 16.h,
+              height: 24.h,
             ),
             Row(
               children: [
@@ -57,9 +62,9 @@ class Body extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 16.h,
+              height: 24.h,
             ),
-            SocialLinks(),
+            const SocialLinks(),
             SizedBox(
               height: 16.h,
             ),
@@ -71,9 +76,6 @@ class Body extends StatelessWidget {
               linkText: "Sign in",
               color: Colors.grey,
               linkColor: Color(0xff023020),
-            ),
-            SizedBox(
-              height: 4.h,
             ),
           ],
         ),
