@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/smsOTP/components/body.dart';
+import 'package:houses_olx/forgot/components/body.dart';
 
-class SmsOtpScreen extends StatelessWidget {
+class SmsOTP extends StatelessWidget {
   static String routeName = "/smsOTPScreen";
-  final int value;
-  SmsOtpScreen({required this.value});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +21,7 @@ class SmsOtpScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Body(
-        value: value,
-      ),
+      body: Body(),
     );
   }
 }

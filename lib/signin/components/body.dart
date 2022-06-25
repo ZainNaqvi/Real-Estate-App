@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/forgot/forgotPassword.dart';
-import 'package:houses_olx/signup/components/form.dart';
-import 'package:houses_olx/signup/signup.dart';
-import 'package:houses_olx/widget/footer.dart';
-import 'package:houses_olx/widget/sociallinks.dart';
+import 'package:houses_olx/signin/components/form.dart';
+
+import '../../forgot/forgotPassword.dart';
+import '../../signup/signup.dart';
+import '../../widget/footer.dart';
+import '../../widget/sociallinks.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -12,13 +13,16 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset("assets/images/house2.jpg"),
             SizedBox(
-              height: 10.h,
+              height: 8.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 44.w, vertical: 24.h),
+              child: Image.asset("assets/images/logo.png"),
             ),
             Text(
               "Sign in to your account",
@@ -29,11 +33,11 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             FormFields(),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             TextButton(
               onPressed: () {
@@ -42,12 +46,14 @@ class Body extends StatelessWidget {
               child: Text(
                 "Forgot password?",
                 style: TextStyle(
+                  color: Color(0xff023020),
                   fontWeight: FontWeight.w700,
+                  fontSize: 17.sp,
                 ),
               ),
             ),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             Row(
               children: [
@@ -75,7 +81,7 @@ class Body extends StatelessWidget {
             ),
             SocialLinks(),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             footer(
               text: "Don't have an account? ",
@@ -84,7 +90,7 @@ class Body extends StatelessWidget {
               },
               linkText: "Sign up",
               color: Colors.grey,
-              linkColor: Colors.blue,
+              linkColor: Color(0xff023020),
             )
           ],
         ),

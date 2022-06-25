@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/smsOTP/smsOTP.dart';
 
+import '../../smsOTP/smsOTP.dart';
 import '../../widget/default.dart';
 
 class Body extends StatelessWidget {
@@ -39,8 +39,8 @@ class Body extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SmsOtpScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SmsOtpScreen(value: 1)));
             },
             child: Row(
               children: [
@@ -53,7 +53,10 @@ class Body extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.black.withOpacity(0.04),
                     ),
-                    child: Icon(Icons.messenger_sharp),
+                    child: Icon(
+                      Icons.messenger_sharp,
+                      color: Color(0xff023020),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -99,7 +102,10 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SmsOtpScreen(value: 2)));
+            },
             child: Row(
               children: [
                 Padding(
@@ -111,7 +117,10 @@ class Body extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.black.withOpacity(0.04),
                     ),
-                    child: Icon(Icons.email),
+                    child: Icon(
+                      Icons.email,
+                      color: Color(0xff023020),
+                    ),
                   ),
                 ),
                 SizedBox(

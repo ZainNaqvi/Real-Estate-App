@@ -15,10 +15,13 @@ class splashStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
-          imageURL,
-          width: double.infinity,
-          height: 300,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            imageURL,
+            width: double.infinity,
+            height: 200.h,
+          ),
         ),
         Spacer(),
         Container(
@@ -37,7 +40,7 @@ class splashStats extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color(0xff023020),
                 ),
               ),
               SizedBox(

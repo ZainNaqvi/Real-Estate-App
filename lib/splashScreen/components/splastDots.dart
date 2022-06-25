@@ -8,7 +8,7 @@ Widget splashDots({required int index, required int currentIndex}) {
     height: 6,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(3),
-      color: currentIndex == index ? Colors.blue : Colors.grey,
+      color: currentIndex == index ? Color(0xff023020) : Colors.grey,
     ),
   );
 }

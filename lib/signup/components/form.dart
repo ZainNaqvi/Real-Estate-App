@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/widget/default.dart';
 
+import '../../widget/default.dart';
 import '../../widget/suffixIcon.dart';
 import '../../widget/validator.dart';
 
@@ -44,7 +44,7 @@ class _FormFieldsState extends State<FormFields> {
                 Text(
                   "Email",
                   style: TextStyle(
-                    color: Colors.grey[800],
+                    color: Color(0xff023020),
                     fontWeight: FontWeight.w600,
                     fontSize: 16.sp,
                   ),
@@ -61,7 +61,7 @@ class _FormFieldsState extends State<FormFields> {
             ),
           ),
           SizedBox(
-            height: 10.h,
+            height: 8.h,
           ),
           TextFormField(
             controller: _userEmailController,
@@ -77,7 +77,7 @@ class _FormFieldsState extends State<FormFields> {
             ),
           ),
           SizedBox(
-            height: 24.h,
+            height: 8.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0.w),
@@ -86,7 +86,7 @@ class _FormFieldsState extends State<FormFields> {
                 Text(
                   "Password",
                   style: TextStyle(
-                    color: Colors.grey[800],
+                    color: Color(0xff023020),
                     fontWeight: FontWeight.w600,
                     fontSize: 16.sp,
                   ),
@@ -103,7 +103,7 @@ class _FormFieldsState extends State<FormFields> {
             ),
           ),
           SizedBox(
-            height: 10.h,
+            height: 8.h,
           ),
           TextFormField(
             controller: _userPasswordController,
@@ -127,7 +127,7 @@ class _FormFieldsState extends State<FormFields> {
             ),
           ),
           SizedBox(
-            height: 10.h,
+            height: 8.h,
           ),
           Row(
             children: [
@@ -146,7 +146,7 @@ class _FormFieldsState extends State<FormFields> {
                 ),
               ),
               SizedBox(
-                width: 10.w,
+                width: 8.w,
               ),
               Text(
                 "Remember me",
@@ -157,7 +157,7 @@ class _FormFieldsState extends State<FormFields> {
             ],
           ),
           SizedBox(
-            height: 16.h,
+            height: 8.h,
           ),
           defaultButton(
               text: "Sign up",
@@ -171,7 +171,7 @@ class _FormFieldsState extends State<FormFields> {
 
   OutlineInputBorder customOutlineBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(40),
+      borderRadius: BorderRadius.circular(40.r),
       borderSide: BorderSide(color: Colors.grey),
     );
   }

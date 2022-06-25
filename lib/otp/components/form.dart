@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/resetPassword/ressetPassword.dart';
 
-import '../../widget/constrains.dart';
+import '../../constrains.dart';
+import '../../resetPassword/ressetPassword.dart';
 import '../../widget/default.dart';
 import 'otpstats.dart';
 
@@ -57,7 +57,7 @@ class _formState extends State<form> {
               "Code has been send to ${widget.value}",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.grey,
+                color: Color(0xff023020),
               ),
             ),
             SizedBox(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/widget/default.dart';
 
+import '../../widget/default.dart';
 import '../../widget/suffixIcon.dart';
 import '../../widget/validator.dart';
 
@@ -180,7 +180,7 @@ class _BodyState extends State<Body> {
                 ],
               ),
               SizedBox(
-                height: 250.h,
+                height: 175.h,
               ),
               defaultButton(
                   text: "Save",

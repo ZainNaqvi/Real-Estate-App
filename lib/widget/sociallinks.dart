@@ -25,14 +25,14 @@ class _SocialLinksState extends State<SocialLinks> {
               )
             : customOutLinedBUtton(
                 press: () {},
-                imageURl: "assets/icons/googleButton.svg",
+                imageURl: "assets/icons/google.svg",
               ),
         SizedBox(
           width: 17,
         ),
         customOutLinedBUtton(
           press: () {},
-          imageURl: "assets/icons/fbButton.svg",
+          imageURl: "assets/icons/facebook-2.svg",
         ),
       ],
     );

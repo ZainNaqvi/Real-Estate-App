@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:houses_olx/otp/otpScreen.dart';
-
+import '../../otp/otpScreen.dart';
 import '../../widget/customOutlineBorder.dart';
 import '../../widget/default.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  final int value;
+  const Body({Key? key, required this.value}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();
@@ -15,9 +15,11 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   TextEditingController _userNumberController = TextEditingController();
+  TextEditingController _userEmailController = TextEditingController();
   @override
   void dispose() {
     _userNumberController.dispose();
+    _userEmailController.dispose();
     super.dispose();
   }
 
@@ -34,32 +36,57 @@ class _BodyState extends State<Body> {
             ),
             Column(
               children: [
-                Text(
-                  "Enter the number here we will send a code\non this to verify it. ",
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12.sp,
-                  ),
-                ),
+                widget.value == 1
+                    ? Text(
+                        "Enter the number here we will send a code\non this to verify it. ",
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12.sp,
+                        ),
+                      )
+                    : Text(
+                        "Enter the email here we will send a code\non this to verify it. ",
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12.sp,
+                        ),
+                      ),
                 SizedBox(
                   height: 24.h,
                 ),
-                TextFormField(
-                  controller: _userNumberController,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
-                    hintText: "Phone number",
-                    enabledBorder: customOutlineBorder(),
-                    suffixIcon: null,
-                    prefixIcon: Icon(Icons.phone),
-                    focusedBorder: customOutlineBorder(),
-                    border: customOutlineBorder(),
-                  ),
-                ),
+                widget.value == 1
+                    ? TextFormField(
+                        controller: _userNumberController,
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                          hintText: "Phone number",
+                          enabledBorder: customOutlineBorder(),
+                          suffixIcon: null,
+                          prefixIcon: Icon(Icons.phone),
+                          focusedBorder: customOutlineBorder(),
+                          border: customOutlineBorder(),
+                        ),
+                      )
+                    : TextFormField(
+                        controller: _userEmailController,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                          hintText: "Email Address",
+                          enabledBorder: customOutlineBorder(),
+                          suffixIcon: null,
+                          prefixIcon: Icon(Icons.email),
+                          focusedBorder: customOutlineBorder(),
+                          border: customOutlineBorder(),
+                        ),
+                      ),
                 SizedBox(
                   height: 72.h,
                 ),
@@ -68,7 +95,9 @@ class _BodyState extends State<Body> {
                     press: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OtpScreen(
-                          value: _userNumberController.text,
+                          value: widget.value == 1
+                              ? _userNumberController.text
+                              : _userEmailController.text,
                         ),
                       ));
                     }),
