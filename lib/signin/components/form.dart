@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
+import 'package:houses_olx/feed/feedScreen.dart';
+import 'package:houses_olx/widget/customSnakeBar.dart';
 
 import '../../widget/default.dart';
 import '../../widget/suffixIcon.dart';
@@ -17,6 +20,8 @@ class _FormFieldsState extends State<FormFields> {
   TextEditingController _userPasswordController = TextEditingController();
   bool isObscure = true;
   bool isChecked = true;
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   @override
   void dispose() {
     // TODO: implement dispose
@@ -32,6 +37,28 @@ class _FormFieldsState extends State<FormFields> {
 
   @override
   Widget build(BuildContext context) {
+    submitForm() async {
+      setState(() {
+        isLoading = true;
+      });
+      String res = await FirebaseAuthMethods().userLogin(
+        email: _userEmailController.text,
+        password: _userPasswordController.text,
+        context: context,
+      );
+      if (res == "success") {
+        setState(() {
+          isLoading = false;
+        });
+        showSnakeBar("Login Successfully", context);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => FeedScreen(),
+          ),
+        );
+      }
+    }
+
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,11 +185,22 @@ class _FormFieldsState extends State<FormFields> {
           SizedBox(
             height: 8.h,
           ),
-          defaultButton(
-              text: "Sign in",
-              press: () {
-                submitForm();
-              }),
+          isLoading
+              ? Center(
+                  child: CircularProgressIndicator(color: Colors.green[900]),
+                )
+              : defaultButton(
+                  text: "Sign in",
+                  press: () {
+                    if (!_formKey.currentState!.validate()) {
+                      // If the form is not valid, display a snackbar. In the real world,
+
+                    } else {
+                      // If the form is valid, display a snackbar. In the real world,
+                      // you'd often call a server or save the information in a database.
+                      submitForm();
+                    }
+                  }),
         ],
       ),
     );

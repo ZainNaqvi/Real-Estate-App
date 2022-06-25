@@ -67,4 +67,28 @@ class FirebaseAuthMethods {
     }
     return res;
   }
+
+  // login
+  Future<String> userLogin({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    String res = "Some error occured.";
+    // checking the values are empty or not
+    try {
+      // now checking and login the user
+      UserCredential credential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+
+      res = "success";
+    } on FirebaseAuthException catch (err) {
+      if (err.code == "wrong-password") {
+        showSnakeBar("Invalid Creaditials", context);
+      }
+    } catch (err) {
+      showSnakeBar(err.toString(), context);
+    }
+    return res;
+  }
 }
