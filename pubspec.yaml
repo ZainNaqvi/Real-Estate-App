@@ -36,6 +36,10 @@ dependencies:
   flutter_svg: ^1.1.0
   form_field_validator: ^1.1.0
   flutter_screenutil: ^5.5.3+2
+  firebase_auth: ^3.3.20
+  cloud_firestore: ^3.1.18
+  firebase_core: ^1.18.0
+  firebase_storage: ^10.2.18
 
 dev_dependencies:
   flutter_test:

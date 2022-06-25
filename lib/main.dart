@@ -1,9 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/routes.dart';
 import 'package:houses_olx/splashScreen/splashscreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBWnFsxN7fUjxvWTCdjI6fQd_MWhld0lEs",
+        appId: "1:74172720956:web:dee9363c0132679a16e039",
+        messagingSenderId: "74172720956",
+        projectId: "olxclon-fac7d",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 

@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
         padding: EdgeInsets.only(
           left: 20.w,
           right: 20.w,
-          top: 68.h,
+          top: 60.h,
           bottom: 4.h,
         ),
         child: Column(
@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
             ),
             FormFields(),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             Row(
               children: [
@@ -62,7 +62,7 @@ class Body extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
             const SocialLinks(),
             SizedBox(

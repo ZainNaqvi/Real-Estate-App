@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/completeProfile/completeProfile.dart';
+import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
+import 'package:houses_olx/widget/customSnakeBar.dart';
 import '../../widget/customOutlineBorder.dart';
 import '../../widget/customTextFormLable.dart';
 import '../../widget/default.dart';
@@ -18,84 +21,50 @@ class FormFields extends StatefulWidget {
 class _FormFieldsState extends State<FormFields> {
   TextEditingController _userEmailController = TextEditingController();
   TextEditingController _userPasswordController = TextEditingController();
-  TextEditingController _userFirstNameController = TextEditingController();
-  TextEditingController _userLastNameController = TextEditingController();
   TextEditingController _userConfirmPasswordController =
       TextEditingController();
-  TextEditingController _userPhoneNumberController = TextEditingController();
-  TextEditingController _userAddressController = TextEditingController();
-  TextEditingController _userCNICController = TextEditingController();
   bool isObscure = true;
   bool isCObscure = true;
   bool isChecked = true;
+  bool isLoading = false;
   @override
   void dispose() {
     super.dispose();
     _userEmailController.dispose();
     _userPasswordController.dispose();
-    _userFirstNameController.dispose();
-    _userLastNameController.dispose();
     _userConfirmPasswordController.dispose();
-    _userPhoneNumberController.dispose();
-    _userAddressController.dispose();
-    _userCNICController.dispose();
   }
 
-  final _formKey = GlobalKey<FormState>();
-  dynamic _genderMale = "male";
-  double _age = 0;
-
-  var countries = ["Pakistan", "India", "China", "Afghanistan", "others"];
-  Object? selectedCountry = "Pakistan";
   @override
   Widget build(BuildContext context) {
+    submitForm() async {
+      setState(() {
+        isLoading = true;
+      });
+      String res = await FirebaseAuthMethods().createUser(
+        email: _userEmailController.text,
+        password: _userPasswordController.text,
+        context: context,
+      );
+      if (res == 'success') {
+        setState(() {
+          isLoading = false;
+        });
+        showSnakeBar("Your account created.", context);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => CompleteProfle(),
+          ),
+        );
+      }
+    }
+
+    final _formKey = GlobalKey<FormState>();
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          customTextFieldLable(
-            isRequired: true,
-            lableText: "First Name",
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          TextFormField(
-            controller: _userFirstNameController,
-            validator: requiredField,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            decoration: customInputDecoration(
-              suffixIcon: null,
-              hintText: "First Name",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(
-            isRequired: true,
-            lableText: "Last Name",
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          TextFormField(
-            controller: _userLastNameController,
-            validator: requiredField,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            decoration: customInputDecoration(
-              suffixIcon: null,
-              hintText: "Last Name",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
           customTextFieldLable(
             lableText: "Email",
             isRequired: true,
@@ -139,9 +108,6 @@ class _FormFieldsState extends State<FormFields> {
           SizedBox(
             height: 8.h,
           ),
-          SizedBox(
-            height: 8.h,
-          ),
           customTextFieldLable(isRequired: true, lableText: "Confirm Password"),
           SizedBox(
             height: 8.h,
@@ -154,168 +120,12 @@ class _FormFieldsState extends State<FormFields> {
             obscureText: isCObscure,
             decoration: customInputDecoration(
                 suffixIcon: Icons.remove_red_eye,
-                hintText: "Password",
+                hintText: "Confirm Password",
                 press: () {
                   setState(() {
                     isCObscure = !isCObscure;
                   });
                 }),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(isRequired: true, lableText: "Phone Number"),
-          SizedBox(
-            height: 8.h,
-          ),
-          TextFormField(
-            controller: _userPhoneNumberController,
-            validator: numberValidator,
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-            decoration: customInputDecoration(
-              suffixIcon: null,
-              hintText: "Phone Number",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(
-            isRequired: true,
-            lableText: "Address",
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          TextFormField(
-            controller: _userAddressController,
-            validator: requiredField,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            decoration: customInputDecoration(
-              suffixIcon: null,
-              hintText: "Address",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(
-            isRequired: true,
-            lableText: "C N I C",
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          TextFormField(
-            controller: _userCNICController,
-            validator: cnicValidator,
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-            decoration: customInputDecoration(
-              suffixIcon: null,
-              hintText: "*****-*******-*",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(
-            lableText: "Country",
-            isRequired: true,
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          DropdownButtonFormField(
-            items: countries.map((String category) {
-              return DropdownMenuItem(
-                  value: category,
-                  child: Row(
-                    children: <Widget>[
-                      Text(category),
-                    ],
-                  ));
-            }).toList(),
-            onChanged: (newValue) {
-              // do other stuff with _category
-              setState(() => selectedCountry = newValue);
-            },
-            value: selectedCountry,
-            decoration: customInputDecoration(
-              suffixIcon: Icons.person,
-              hintText: "",
-              press: () {},
-            ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(
-            isRequired: true,
-            lableText: "Age",
-          ),
-          Slider(
-            value: _age,
-            min: 0.0,
-            max: 100.0,
-            divisions: 100,
-            label: '${_age.round()}',
-            onChanged: (double value) {
-              setState(() {
-                _age = value;
-              });
-            },
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          customTextFieldLable(lableText: "Gender", isRequired: true),
-          SizedBox(
-            height: 8.h,
-          ),
-          Row(
-            children: [
-              Radio(
-                autofocus: true,
-                value: "male",
-                groupValue: _genderMale,
-                onChanged: (value) {
-                  setState(() {
-                    _genderMale = value!;
-                  });
-                },
-              ),
-              SizedBox(
-                width: 3.w,
-              ),
-              Text(
-                "Male",
-              ),
-              SizedBox(
-                width: 8.h,
-              ),
-              Radio(
-                value: "Female",
-                groupValue: _genderMale,
-                onChanged: (value) {
-                  setState(() {
-                    _genderMale = value!;
-                  });
-                },
-              ),
-              SizedBox(
-                width: 3.h,
-              ),
-              Text("Female"),
-            ],
-          ),
-          SizedBox(
-            height: 8.h,
           ),
           Row(
             children: [
@@ -347,18 +157,28 @@ class _FormFieldsState extends State<FormFields> {
           SizedBox(
             height: 8.h,
           ),
-          defaultButton(
-              text: "Sign up",
-              press: () {
-                if (!_formKey.currentState!.validate()) {
-                  // If the form is not valid, display a snackbar. In the real world,
+          isLoading
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: Color(0xff023020),
+                  ),
+                )
+              : AnimatedContainer(
+                  duration: Duration(milliseconds: 600),
+                  curve: Curves.bounceIn,
+                  child: defaultButton(
+                      text: "Sign up",
+                      press: () {
+                        if (!_formKey.currentState!.validate()) {
+                          // If the form is not valid, display a snackbar. In the real world,
 
-                } else {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-
-                }
-              }),
+                        } else {
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          submitForm();
+                        }
+                      }),
+                ),
         ],
       ),
     );

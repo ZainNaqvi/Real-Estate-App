@@ -31,7 +31,7 @@ class _BodyState extends State<Body> {
       "title": "Find your Beloved Family's Dream\nHouse with us",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/splash2.jpg",
+      "imageURL": "assets/images/splash2.png",
     },
   ];
 
