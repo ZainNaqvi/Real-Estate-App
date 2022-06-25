@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../widget/customOutlineBorder.dart';
+import '../../widget/customTextFormLable.dart';
 import '../../widget/default.dart';
 import '../../widget/suffixIcon.dart';
 import '../../widget/validator.dart';
@@ -37,29 +39,7 @@ class _FormFieldsState extends State<FormFields> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-            child: Row(
-              children: [
-                Text(
-                  "Email",
-                  style: TextStyle(
-                    color: Color(0xff023020),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-                Text(
-                  "*",
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          customTextFieldLable(lableText: "Email", isRequired: true),
           SizedBox(
             height: 8.h,
           ),
@@ -79,29 +59,7 @@ class _FormFieldsState extends State<FormFields> {
           SizedBox(
             height: 8.h,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-            child: Row(
-              children: [
-                Text(
-                  "Password",
-                  style: TextStyle(
-                    color: Color(0xff023020),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-                Text(
-                  "*",
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          customTextFieldLable(isRequired: true, lableText: "Password"),
           SizedBox(
             height: 8.h,
           ),
@@ -166,13 +124,6 @@ class _FormFieldsState extends State<FormFields> {
               }),
         ],
       ),
-    );
-  }
-
-  OutlineInputBorder customOutlineBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(40.r),
-      borderSide: BorderSide(color: Colors.grey),
     );
   }
 }
