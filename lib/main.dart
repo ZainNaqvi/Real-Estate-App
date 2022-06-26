@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/routes.dart';
+import 'package:houses_olx/signin/signin.dart';
 import 'package:houses_olx/splashScreen/splashscreen.dart';
+import 'package:houses_olx/widget/customSnakeBar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +40,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'First Method',
-          initialRoute: SplashScreen.routeName,
+          initialRoute: FirebaseAuth.instance.currentUser!.emailVerified
+              ? FeedScreen.routeName
+              : SplashScreen.routeName,
           routes: routes,
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
@@ -46,7 +52,30 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: SplashScreen(),
+      child: StreamBuilder(
+        stream: FirebaseAuth.instance.idTokenChanges(),
+        builder: (context, snapshot) {
+          // if the connection is made
+          if (snapshot.connectionState == ConnectionState.active) {
+            // snapshot has data then return the screen
+            if (snapshot.hasData) {
+              return FeedScreen();
+            } else if (snapshot.hasError) {
+              // has errorr
+              return showSnakeBar(snapshot.error.toString(), context);
+            }
+          }
+          // if connection is on waiting state
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            );
+          }
+          return Signin();
+        },
+      ),
     );
   }
 }

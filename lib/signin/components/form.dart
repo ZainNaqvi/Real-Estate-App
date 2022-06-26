@@ -134,7 +134,7 @@ class _FormFieldsState extends State<FormFields> {
           ),
           TextFormField(
             controller: _userPasswordController,
-            validator: passwordValidator,
+            validator: requiredField,
             keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.next,
             obscureText: isObscure,

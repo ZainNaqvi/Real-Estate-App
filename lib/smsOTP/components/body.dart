@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../db/authentication/firebase_auth_methods.dart';
 import '../../otp/otpScreen.dart';
 import '../../widget/customOutlineBorder.dart';
 import '../../widget/default.dart';
@@ -25,6 +26,13 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    forgotPasswordByEmail() async {
+      String res = await FirebaseAuthMethods().forgotPassword(
+        context: context,
+        email: _userEmailController.text,
+      );
+    }
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 160.h),
@@ -93,13 +101,7 @@ class _BodyState extends State<Body> {
                 defaultButton(
                     text: "Send",
                     press: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OtpScreen(
-                          value: widget.value == 1
-                              ? _userNumberController.text
-                              : _userEmailController.text,
-                        ),
-                      ));
+                      forgotPasswordByEmail();
                     }),
               ],
             ),

@@ -157,4 +157,17 @@ class FirebaseAuthMethods {
     }
     return res;
   }
+
+  // forgot password
+  Future<String> forgotPassword(
+      {required BuildContext context, required String email}) async {
+    String res = "Some error occred";
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      res = 'success';
+    } on FirebaseException catch (e) {
+      showSnakeBar(e.message!, context);
+    }
+    return res;
+  }
 }

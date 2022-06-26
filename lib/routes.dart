@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/signin/signin.dart';
 import 'package:houses_olx/signup/signup.dart';
 import 'package:houses_olx/smsOTP/forgotPassword.dart';
@@ -11,4 +12,5 @@ final Map<String, WidgetBuilder> routes = {
   Signin.routeName: (context) => Signin(),
   ForgotScreen.routeName: (context) => ForgotScreen(),
   SmsOTP.routeName: (context) => SmsOTP(),
+  FeedScreen.routeName: (context) => FeedScreen(),
 };
