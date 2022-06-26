@@ -52,7 +52,7 @@ class FirebaseAuthMethods {
   ) async {
     String res = "Some error occured";
     try {
-      await _auth.currentUser!.sendEmailVerification();
+      _auth.currentUser!.sendEmailVerification();
       showSnakeBar("Email Verification is send to your email.", context);
       res = "success";
     } on FirebaseException catch (e) {

@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/completeProfile/completeProfile.dart';
 import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
+import 'package:houses_olx/signup/components/verifyemail.dart';
+import 'package:houses_olx/signup/signup.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
 import '../../widget/customOutlineBorder.dart';
 import '../../widget/customTextFormLable.dart';
@@ -51,12 +55,12 @@ class _FormFieldsState extends State<FormFields> {
         setState(() {
           isLoading = false;
         });
-        showSnakeBar("Your account created.", context);
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => CompleteProfle(),
           ),
         );
+        showSnakeBar("Verify email", context);
       } else {
         setState(() {
           isLoading = false;
