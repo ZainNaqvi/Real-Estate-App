@@ -27,6 +27,7 @@ class _FormFieldsState extends State<FormFields> {
   bool isCObscure = true;
   bool isChecked = true;
   bool isLoading = false;
+  final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     super.dispose();
@@ -56,10 +57,14 @@ class _FormFieldsState extends State<FormFields> {
             builder: (context) => CompleteProfle(),
           ),
         );
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        showSnakeBar(res, context);
       }
     }
 
-    final _formKey = GlobalKey<FormState>();
     return Form(
       key: _formKey,
       child: Column(

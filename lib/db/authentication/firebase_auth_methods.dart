@@ -1,8 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:houses_olx/models/users.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
+// ignore: avoid_web_libraries_in_flutter
+// import 'dart:html' as html;
 
 class FirebaseAuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,7 +26,16 @@ class FirebaseAuthMethods {
         password: password,
       );
       print(userCredential.user!.uid);
-      res = "success";
+      // email verification
+      String verifyRes = await sendVerification(context);
+
+      if (verifyRes == 'success') {
+        // const url = "https://mail.google.com/";
+        // html.window.open(url, "Gmail.com");
+        res = "success";
+      } else {
+        showSnakeBar(verifyRes, context);
+      }
     } on FirebaseAuthException catch (err) {
       if (err.code == 'weak-password') {
         showSnakeBar("The password provided is too weak.", context);
@@ -32,6 +46,22 @@ class FirebaseAuthMethods {
     return res;
   }
 
+// Email Verification
+  Future<String> sendVerification(
+    BuildContext context,
+  ) async {
+    String res = "Some error occured";
+    try {
+      await _auth.currentUser!.sendEmailVerification();
+      showSnakeBar("Email Verification is send to your email.", context);
+      res = "success";
+    } on FirebaseException catch (e) {
+      showSnakeBar(e.message!, context);
+    }
+    return res;
+  }
+
+  // complete profile
   Future<String> completeProfile({
     required String firstName,
     required String lastName,
@@ -80,14 +110,50 @@ class FirebaseAuthMethods {
       // now checking and login the user
       UserCredential credential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-
-      res = "success";
+      if (!_auth.currentUser!.emailVerified) {
+        await _auth.currentUser!.sendEmailVerification();
+        // const url = "https://mail.google.com/";
+        // html.window.open(url, "Gmail.com");
+        showSnakeBar("Verify the email first.", context);
+      } else {
+        res = "success";
+      }
     } on FirebaseAuthException catch (err) {
       if (err.code == "wrong-password") {
         showSnakeBar("Invalid Creaditials", context);
       }
     } catch (err) {
       showSnakeBar(err.toString(), context);
+    }
+    return res;
+  }
+  // google sign in
+
+  Future<String> googleSignInOrSignUp({required BuildContext context}) async {
+    String res = "Some error Found";
+    try {
+      final GoogleSignInAccount? _googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await _googleUser?.authentication;
+      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        UserCredential userCreaditails =
+            await _auth.signInWithCredential(credential);
+        print(userCreaditails.user!.uid);
+        print(userCreaditails.user!.displayName);
+        // googel signup
+        if (userCreaditails.user != null) {
+          if (userCreaditails.additionalUserInfo!.isNewUser) {
+            print("singup hererer new user");
+          }
+        }
+        res = 'success';
+      }
+    } on FlutterExceptionHandler catch (e) {
+      res = e.toString();
     }
     return res;
   }

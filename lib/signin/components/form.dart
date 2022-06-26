@@ -20,7 +20,7 @@ class _FormFieldsState extends State<FormFields> {
   TextEditingController _userPasswordController = TextEditingController();
   bool isObscure = true;
   bool isChecked = true;
-  final _formKey = GlobalKey<FormState>();
+
   bool isLoading = false;
   @override
   void dispose() {
@@ -30,11 +30,7 @@ class _FormFieldsState extends State<FormFields> {
     _userPasswordController.dispose();
   }
 
-  submitForm() {
-    print(_userEmailController.text);
-    print(_userPasswordController.text);
-  }
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     submitForm() async {
@@ -56,10 +52,15 @@ class _FormFieldsState extends State<FormFields> {
             builder: (context) => FeedScreen(),
           ),
         );
+      } else {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
 
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

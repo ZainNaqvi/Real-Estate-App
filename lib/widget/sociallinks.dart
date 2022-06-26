@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
+import 'package:houses_olx/widget/customSnakeBar.dart';
 
 import 'customOutlinedbutton.dart';
 
@@ -14,17 +17,37 @@ class _SocialLinksState extends State<SocialLinks> {
 
   @override
   Widget build(BuildContext context) {
+    submitForm() async {
+      setState(() {
+        loading = true;
+      });
+      String res =
+          await FirebaseAuthMethods().googleSignInOrSignUp(context: context);
+      if (res == "success") {
+        setState(() {
+          loading = false;
+        });
+        showSnakeBar(res, context);
+      } else {
+        setState(() {
+          loading = false;
+        });
+      }
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         loading
             ? Center(
                 child: CircularProgressIndicator(
-                  color: Colors.white,
+                  color: Colors.green[900],
                 ),
               )
             : customOutLinedBUtton(
-                press: () {},
+                press: () {
+                  submitForm();
+                },
                 imageURl: "assets/icons/google.svg",
               ),
         SizedBox(
