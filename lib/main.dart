@@ -44,10 +44,9 @@ class MyApp extends StatelessWidget {
           initialRoute: Lottie.routeName,
           routes: routes,
           // You can use the library anywhere in the app even in theme
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          ),
+          theme: ThemeData.light(),
+          themeMode: ThemeMode.system,
+          darkTheme: ThemeData.dark(),
           home: child,
         );
       },

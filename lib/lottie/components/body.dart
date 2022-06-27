@@ -19,7 +19,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(
-          seconds: 5,
+          seconds: 3,
         ));
 
     _animationController.addStatusListener((status) {
