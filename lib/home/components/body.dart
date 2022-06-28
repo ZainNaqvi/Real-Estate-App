@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/home/components/header.dart';
 import 'package:houses_olx/home/components/menuHouses.dart';
 import 'package:houses_olx/home/components/productHeading.dart';
+import 'package:houses_olx/house/house.dart';
 
 import '../../widget/customCard.dart';
 
@@ -63,15 +64,30 @@ class Body extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(width: 1.w),
-                  menuButton(iconData: Icons.house, text: "House"),
+                  menuButton(
+                    iconData: Icons.house,
+                    text: "House",
+                    press: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HouseScreen()));
+                    },
+                  ),
                   SizedBox(
                     width: 7.w,
                   ),
-                  menuButton(iconData: Icons.villa, text: "Villa"),
+                  menuButton(
+                    iconData: Icons.villa,
+                    text: "Villa",
+                    press: () {},
+                  ),
                   SizedBox(
                     width: 7.w,
                   ),
-                  menuButton(iconData: Icons.apartment, text: "Apartment"),
+                  menuButton(
+                    iconData: Icons.apartment,
+                    text: "Apartment",
+                    press: () {},
+                  ),
                 ],
               ),
               SizedBox(

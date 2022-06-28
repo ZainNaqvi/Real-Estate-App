@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Widget menuButton({
   required IconData iconData,
   required String text,
+  required VoidCallback press,
 }) {
   return OutlinedButton(
     style: ButtonStyle(
@@ -16,7 +17,7 @@ Widget menuButton({
         ),
       ),
     ),
-    onPressed: () {},
+    onPressed: press,
     child: Center(
       child: Column(
         children: [

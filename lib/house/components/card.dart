@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class customCard extends StatelessWidget {
-  const customCard({
+class customHouseCard extends StatelessWidget {
+  const customHouseCard({
     Key? key,
   }) : super(key: key);
 
@@ -11,12 +11,13 @@ class customCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 8.w,
+        vertical: 8.h,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            width: 280.w,
+            width: double.infinity,
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -36,7 +37,7 @@ class customCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 280.w,
+            width: double.infinity,
             child: OutlinedButton(
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(
@@ -58,7 +59,7 @@ class customCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 0.0),
@@ -73,20 +74,24 @@ class customCard extends StatelessWidget {
                         SizedBox(
                           width: 16.w,
                         ),
-                        Text(
-                          "\$1,800/ ",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        Text(
-                          " month",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "\$1,800/ ",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                            Text(
+                              " month",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
