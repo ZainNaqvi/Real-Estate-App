@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/splashScreen/splashscreen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/userProviders.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -16,10 +19,11 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   @override
   void initState() {
+    addData();
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(
-          seconds: 3,
+          seconds: 10,
         ));
 
     _animationController.addStatusListener((status) {
@@ -44,6 +48,13 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     });
     // TODO: implement initState
     super.initState();
+  }
+
+  addData() async {
+    // ignore: no_leading_underscores_for_local_identifiers
+    UserProviders userProviders = Provider.of(context, listen: false);
+
+    await userProviders.refreshUser();
   }
 
   @override

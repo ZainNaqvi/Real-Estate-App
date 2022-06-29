@@ -10,6 +10,7 @@ import 'package:houses_olx/widget/validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+import '../../db/authentication/firebase_auth_methods.dart';
 import '../../provider/userProviders.dart';
 
 class Body extends StatefulWidget {
@@ -28,24 +29,15 @@ class _BodyState extends State<Body> {
   TextEditingController _userRoomsController = TextEditingController();
   TextEditingController _userSQrtController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  @override
-  void dispose() {
-    super.dispose();
-    _userBedsController.dispose();
-    _userRoomsController.dispose();
-    _userLocationController.dispose();
-    _userOverViewController.dispose();
-    _userPriceController.dispose();
-    _userSQrtController.dispose();
-    _userTitleController.dispose();
-  }
 
   double priceRangeValue = 0;
   RangeValues _currentRangeValues = const RangeValues(0, 100000);
 
   Uint8List? _file;
+
   bool _isloading = false;
 // for adding post
+
   void addPost({
     required String uid,
     required String userName,
@@ -83,66 +75,75 @@ class _BodyState extends State<Body> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _userBedsController.dispose();
+    _userRoomsController.dispose();
+    _userLocationController.dispose();
+    _userOverViewController.dispose();
+    _userPriceController.dispose();
+    _userSQrtController.dispose();
+    _userTitleController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // provider code for gettiing the data from the databsae
-    UserCreaditials? userCreaditials =
-        Provider.of<UserProviders>(context).getUser;
-    print(priceRangeValue);
-    print(_file);
+    // UserCreaditials? userCreaditials =
+    //     Provider.of<UserProviders>(context).getUser;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: SingleChildScrollView(
           child: Column(
         children: [
-          _isloading
-              ? LinearProgressIndicator()
-              : Stack(
-                  children: [
-                    Container(
-                        clipBehavior: Clip.antiAlias,
-                        width: double.infinity,
-                        height: 150.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        child: _file == null
-                            ? Image.asset(
-                                "assets/images/eral.jpg",
-                                fit: BoxFit.cover,
-                              )
-                            : CircleAvatar(
-                                key: UniqueKey(),
-                                backgroundImage: MemoryImage(
-                                  _file!,
-                                ),
-                                backgroundColor: Colors.white.withOpacity(0.13),
-                                radius: 50,
-                              )),
-                    InkWell(
-                      onTap: () async {
-                        Uint8List file = await pickImage(ImageSource.gallery);
-                        setState(() {
-                          _file = file;
-                        });
-                      },
-                      child: Center(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 28.h),
-                          width: 90.w,
-                          height: 90.h,
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.4),
-                            shape: BoxShape.circle,
+          Stack(
+            children: [
+              Container(
+                  clipBehavior: Clip.antiAlias,
+                  width: double.infinity,
+                  height: 150.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: _file == null
+                      ? Image.asset(
+                          "assets/images/eral.jpg",
+                          fit: BoxFit.cover,
+                        )
+                      : CircleAvatar(
+                          key: UniqueKey(),
+                          backgroundImage: MemoryImage(
+                            _file!,
                           ),
-                          child: Icon(
-                            Icons.camera,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                          backgroundColor: Colors.white.withOpacity(0.13),
+                          radius: 50,
+                        )),
+              InkWell(
+                onTap: () async {
+                  Uint8List file = await pickImage(ImageSource.gallery);
+                  setState(() {
+                    _file = file;
+                  });
+                },
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 28.h),
+                    width: 90.w,
+                    height: 90.h,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      shape: BoxShape.circle,
                     ),
-                  ],
+                    child: Icon(
+                      Icons.camera,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
+              ),
+            ],
+          ),
           Form(
             key: _formKey,
             child: Column(
@@ -247,22 +248,29 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: 16.h,
                 ),
-                defaultButton(
-                    text: "Send",
-                    press: () {
-                      if (!_formKey.currentState!.validate()) {
-                        // If the form is not valid, display a snackbar. In the real world,
+                _isloading
+                    ? CircularProgressIndicator(
+                        color: Colors.green[900],
+                      )
+                    : defaultButton(
+                        text: "Send",
+                        press: () async {
+                          if (!_formKey.currentState!.validate()) {
+                            // If the form is not valid, display a snackbar. In the real world,
 
-                      } else {
-                        // ignore: prefer_interpolation_to_compose_strings
-                        addPost(
-                          uid: userCreaditials.uid,
-                          userName: userCreaditials.firstName +
-                              " " +
-                              userCreaditials.lastName,
-                        );
-                      }
-                    }),
+                          } else {
+                            UserCreaditials? _users;
+                            final FirebaseAuthMethods _auth =
+                                FirebaseAuthMethods();
+                            UserCreaditials userCreaditials =
+                                await _auth.getUserDetails();
+                            // ignore: prefer_interpolation_to_compose_strings
+                            addPost(
+                              uid: userCreaditials.uid,
+                              userName: userCreaditials.firstName,
+                            );
+                          }
+                        }),
                 SizedBox(
                   height: 16.h,
                 ),

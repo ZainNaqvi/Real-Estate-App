@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/lottie/splash.dart';
+import 'package:houses_olx/provider/userProviders.dart';
 import 'package:houses_olx/routes.dart';
 import 'package:houses_olx/signin/signin.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,16 +39,23 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'First Method',
-          initialRoute: Lottie.routeName,
-          routes: routes,
-          // You can use the library anywhere in the app even in theme
-          theme: ThemeData.light(),
-          themeMode: ThemeMode.system,
-          darkTheme: ThemeData.dark(),
-          home: child,
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (_) => UserProviders(),
+            ),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'First Method',
+            initialRoute: Lottie.routeName,
+            routes: routes,
+            // You can use the library anywhere in the app even in theme
+            theme: ThemeData.light(),
+            themeMode: ThemeMode.system,
+            darkTheme: ThemeData.dark(),
+            home: child,
+          ),
         );
       },
       child: StreamBuilder(
