@@ -96,7 +96,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         : Colors.black.withOpacity(0.04),
                     borderRadius: BorderRadius.circular(10.r)),
                 child: Icon(
-                  Icons.search,
+                  Icons.favorite,
                   size: _page == 1 ? 30 : 30,
                   color: _page == 1 ? Colors.white : Colors.grey,
                 ),
@@ -114,7 +114,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         : Colors.black.withOpacity(0.04),
                     borderRadius: BorderRadius.circular(10.r)),
                 child: Icon(
-                  Icons.favorite_outline,
+                  Icons.add,
                   size: _page == 2 ? 30 : 30,
                   color: _page == 2 ? Colors.white : Colors.grey,
                 ),

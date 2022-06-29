@@ -7,7 +7,6 @@ import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/lottie/splash.dart';
 import 'package:houses_olx/routes.dart';
 import 'package:houses_olx/signin/signin.dart';
-import 'package:houses_olx/splashScreen/splashscreen.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
 
 void main() async {
