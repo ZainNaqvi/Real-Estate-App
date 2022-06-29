@@ -1,8 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:houses_olx/house/components/body.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
 import 'components/appbar.dart';
 
 class HouseScreen extends StatefulWidget {
@@ -12,54 +17,19 @@ class HouseScreen extends StatefulWidget {
 
 class _HouseScreenState extends State<HouseScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  late Animation degOneTranslationAnimation,
-      degTwoTranslationAnimation,
-      degThreeTranslationAnimation,
-      degFourTranslationAnimation;
-  late Animation rotationAnimation;
+  Future<String> saveImage(Uint8List bytes) async {
+    await [Permission.storage].request();
+    final time = DateTime.now()
+        .toIso8601String()
+        .replaceAll(".", "-")
+        .replaceAll(":", "-");
+    final name = "screenshot_$time";
+    final result = await ImageGallerySaver.saveImage(bytes, name: name);
 
-  double getRadiansFromDegree(double degree) {
-    double unitRadian = 57.295779513;
-    return degree / unitRadian;
+    return result['filePath'];
   }
 
-  @override
-  void initState() {
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
-    degOneTranslationAnimation = TweenSequence([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: 1.2), weight: 75.0),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 1.2, end: 1.0), weight: 25.0),
-    ]).animate(animationController);
-    degTwoTranslationAnimation = TweenSequence([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: 1.4), weight: 55.0),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 1.4, end: 1.0), weight: 45.0),
-    ]).animate(animationController);
-    degThreeTranslationAnimation = TweenSequence([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: 1.75), weight: 35.0),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 1.75, end: 1.0), weight: 65.0),
-    ]).animate(animationController);
-    degFourTranslationAnimation = TweenSequence([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: 2.10), weight: 15.0),
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 2.10, end: 1.0), weight: 85.0),
-    ]).animate(animationController);
-    rotationAnimation = Tween<double>(begin: 180.0, end: 0.0).animate(
-        CurvedAnimation(parent: animationController, curve: Curves.easeOut));
-    super.initState();
-    animationController.addListener(() {
-      setState(() {});
-    });
-  }
-
+  final _controller = ScreenshotController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -73,43 +43,51 @@ class _HouseScreenState extends State<HouseScreen>
           return true;
         }
       },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: customAppbar(),
-        body: Body(),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
-          backgroundColor: Colors.green[900],
-          overlayColor: Colors.black.withOpacity(0.04),
-          spacing: 4.h,
-          spaceBetweenChildren: 12.h,
-          openCloseDial: isDialOpen,
-          children: [
-            SpeedDialChild(
-              child: Icon(Icons.share),
-              label: "Share",
-              backgroundColor: Colors.green[300],
-              onTap: () {},
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.star),
-              label: "Rate App",
-              backgroundColor: Colors.green[300],
-              onTap: () {},
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.screenshot),
-              label: "Take Snap",
-              backgroundColor: Colors.green[300],
-              onTap: () {},
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.add),
-              label: "Add post",
-              backgroundColor: Colors.green[300],
-              onTap: () {},
-            ),
-          ],
+      child: Screenshot(
+        controller: _controller,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: customAppbar(),
+          body: Body(),
+          floatingActionButton: SpeedDial(
+            animatedIcon: AnimatedIcons.menu_close,
+            backgroundColor: Colors.green[900],
+            overlayColor: Colors.black.withOpacity(0.04),
+            spacing: 4.h,
+            spaceBetweenChildren: 12.h,
+            openCloseDial: isDialOpen,
+            children: [
+              SpeedDialChild(
+                child: Icon(Icons.share),
+                label: "Share",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.star),
+                label: "Rate App",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.screenshot),
+                label: "Take Snap",
+                backgroundColor: Colors.green[300],
+                onTap: () async {
+                  final image = await _controller.capture();
+                  if (image == null) return;
+                  final result = await saveImage(image);
+                  print(result);
+                },
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.add),
+                label: "Add post",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
