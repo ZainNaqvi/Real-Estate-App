@@ -12,6 +12,28 @@ import 'package:houses_olx/widget/customSnakeBar.dart';
 class FirebaseAuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
+// for the provider
+  Future<UserCreaditials> getUserDetails() async {
+    // getting the current user by firebase auth
+    User currentUser = _auth.currentUser!;
+
+    //getting the data
+
+    DocumentSnapshot snapshot = await _firebaseFirestore
+        .collection("users")
+        .doc(currentUser.uid)
+        .get()
+        .catchError(
+      (onError) {
+        print(onError);
+      },
+    );
+
+    return UserCreaditials.fromSnap(snapshot);
+  }
+  // Creating the function which is responsible for the auth related work
+
   // creating the function to create the user
   Future<String> createUser({
     required String email,
