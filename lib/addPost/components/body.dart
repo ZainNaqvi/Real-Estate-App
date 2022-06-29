@@ -1,7 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/widget/default.dart';
+import 'package:houses_olx/widget/imagepicker.dart';
 import 'package:houses_olx/widget/validator.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -34,14 +38,12 @@ class _BodyState extends State<Body> {
   double priceRangeValue = 0;
   RangeValues _currentRangeValues = const RangeValues(0, 100000);
 
-  static String _valueToString(double value) {
-    return value.toStringAsFixed(0);
-  }
-
+  Uint8List? _file;
+  submitForm() {}
   @override
   Widget build(BuildContext context) {
     print(priceRangeValue);
-
+    print(_file);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
       child: SingleChildScrollView(
@@ -50,29 +52,45 @@ class _BodyState extends State<Body> {
           Stack(
             children: [
               Container(
-                clipBehavior: Clip.antiAlias,
-                width: double.infinity,
-                height: 150.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Image.asset(
-                  "assets/images/eral.jpg",
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Center(
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 28.h),
-                  width: 90.w,
-                  height: 90.h,
+                  clipBehavior: Clip.antiAlias,
+                  width: double.infinity,
+                  height: 150.h,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(10.r),
                   ),
-                  child: Icon(
-                    Icons.camera,
-                    color: Colors.white,
+                  child: _file == null
+                      ? Image.asset(
+                          "assets/images/eral.jpg",
+                          fit: BoxFit.cover,
+                        )
+                      : CircleAvatar(
+                          key: UniqueKey(),
+                          backgroundImage: MemoryImage(
+                            _file!,
+                          ),
+                          backgroundColor: Colors.white.withOpacity(0.13),
+                          radius: 50,
+                        )),
+              InkWell(
+                onTap: () async {
+                  Uint8List file = await pickImage(ImageSource.gallery);
+                  setState(() {
+                    _file = file;
+                  });
+                },
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 28.h),
+                    width: 90.w,
+                    height: 90.h,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.camera,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -189,9 +207,7 @@ class _BodyState extends State<Body> {
                         // If the form is not valid, display a snackbar. In the real world,
 
                       } else {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-
+                        submitForm();
                       }
                     }),
                 SizedBox(

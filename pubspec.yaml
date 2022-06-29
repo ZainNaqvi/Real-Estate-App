@@ -45,10 +45,11 @@ dependencies:
   flutter_speed_dial: ^6.0.0
   screenshot: ^1.2.3
   # image_gallery_saver: ^1.7.1
-  image_picker:
+  image_picker: ^0.8.5+3
   permission_handler: ^10.0.0
   share_plus:
   path_provider:
+  uuid: ^3.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
