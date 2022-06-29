@@ -89,7 +89,7 @@ class _HouseScreenState extends State<HouseScreen>
                         ..scale(degOneTranslationAnimation.value),
                       alignment: Alignment.center,
                       child: CircularButton(
-                        color: Colors.red,
+                        color: Colors.blue,
                         width: 40,
                         height: 40,
                         icon: Icon(
@@ -111,7 +111,7 @@ class _HouseScreenState extends State<HouseScreen>
                         ..scale(degTwoTranslationAnimation.value),
                       alignment: Alignment.center,
                       child: CircularButton(
-                        color: Colors.black54,
+                        color: Colors.blue.withOpacity(0.06),
                         width: 40,
                         height: 40,
                         icon: Icon(
@@ -133,11 +133,11 @@ class _HouseScreenState extends State<HouseScreen>
                         ..scale(degThreeTranslationAnimation.value),
                       alignment: Alignment.center,
                       child: CircularButton(
-                        color: Colors.black54,
+                        color: Colors.blue.withOpacity(0.06),
                         width: 40,
                         height: 40,
                         icon: Icon(
-                          Icons.equalizer,
+                          Icons.screenshot,
                           color: Colors.white,
                         ),
                         onClick: () {
@@ -146,49 +146,6 @@ class _HouseScreenState extends State<HouseScreen>
                       ),
                     ),
                   ),
-                  Transform.translate(
-                    offset: Offset.fromDirection(getRadiansFromDegree(180),
-                        degFourTranslationAnimation.value * 100),
-                    child: Transform(
-                      transform: Matrix4.rotationZ(
-                          getRadiansFromDegree(rotationAnimation.value))
-                        ..scale(degFourTranslationAnimation.value),
-                      alignment: Alignment.center,
-                      child: CircularButton(
-                        color: Colors.black54,
-                        width: 40,
-                        height: 40,
-                        icon: Icon(
-                          Icons.settings,
-                          color: Colors.white,
-                        ),
-                        onClick: () {
-                          print('Fourth Button');
-                        },
-                      ),
-                    ),
-                  ),
-                  Transform(
-                    transform: Matrix4.rotationZ(
-                        getRadiansFromDegree(rotationAnimation.value)),
-                    alignment: Alignment.center,
-                    child: CircularButton(
-                      color: Colors.red,
-                      width: 60,
-                      height: 60,
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                      ),
-                      onClick: () {
-                        if (animationController.isCompleted) {
-                          animationController.reverse();
-                        } else {
-                          animationController.forward();
-                        }
-                      },
-                    ),
-                  )
                 ],
               ))
         ],
