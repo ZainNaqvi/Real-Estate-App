@@ -46,7 +46,8 @@ dependencies:
   screenshot: ^1.2.3
   image_gallery_saver: ^1.7.1
   permission_handler: ^10.0.0
-
+  share_plus:
+  path_provider:
 dev_dependencies:
   flutter_test:
     sdk: flutter

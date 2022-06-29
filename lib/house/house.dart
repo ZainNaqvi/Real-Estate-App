@@ -1,13 +1,15 @@
+import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:houses_olx/house/components/body.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 import 'components/appbar.dart';
 
 class HouseScreen extends StatefulWidget {
@@ -27,6 +29,13 @@ class _HouseScreenState extends State<HouseScreen>
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
 
     return result['filePath'];
+  }
+
+  Future saveAndShare(Uint8List bytes) async {
+    final directry = await getApplicationDocumentsDirectory();
+    final image = File('${directry.path}/flutter.png');
+    image.writeAsBytesSync(bytes);
+    await Share.shareFiles([image.path]);
   }
 
   final _controller = ScreenshotController();
@@ -74,10 +83,11 @@ class _HouseScreenState extends State<HouseScreen>
                 label: "Take Snap",
                 backgroundColor: Colors.green[300],
                 onTap: () async {
-                  final image = await _controller.capture();
+                  final image = await _controller.captureFromWidget(Body());
                   if (image == null) return;
-                  final result = await saveImage(image);
-                  print(result);
+                  saveAndShare(image);
+                  // final result = await saveImage(image);
+                  // print(result);
                 },
               ),
               SpeedDialChild(
