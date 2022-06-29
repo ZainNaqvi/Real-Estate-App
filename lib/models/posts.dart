@@ -14,7 +14,6 @@ class UserPost {
   final String postId;
   final datePublished;
   final String postURL;
-  final String profileImage;
 
   final likes;
   // creating the constructor here...
@@ -25,7 +24,6 @@ class UserPost {
     required this.postId,
     required this.datePublished,
     required this.postURL,
-    required this.profileImage,
     required this.likes,
     required this.beds,
     required this.location,
@@ -45,7 +43,6 @@ class UserPost {
         "sqft": sqft,
         "overview": overview,
         "datePublished": datePublished,
-        "profileImage": profileImage,
         "likes": likes,
         "postURL": postURL,
       };
@@ -54,8 +51,6 @@ class UserPost {
     return UserPost(
       uid: snapshot['uid'],
       userName: snapshot['userName'],
-      title: snapshot['title'],
-      profileImage: snapshot['profileImage'],
       likes: snapshot['likes'],
       datePublished: snapshot['datePublished'],
       postURL: snapshot['postURL'],
@@ -66,6 +61,7 @@ class UserPost {
       overview: snapshot['overview'],
       price: snapshot['price'],
       rooms: snapshot['rooms'],
+      title: snapshot['title'],
     );
   }
 }

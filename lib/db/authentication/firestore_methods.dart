@@ -19,7 +19,6 @@ class FirestoreMethods {
     required String beds,
     required String rooms,
     required String sqft,
-    required String? profileImage,
   }) async {
     String res = "Some error occured";
     try {
@@ -37,7 +36,6 @@ class FirestoreMethods {
         postId: postId,
         datePublished: DateTime.now(),
         postURL: imageURL,
-        profileImage: profileImage!,
         likes: [],
         beds: beds,
         location: location,
