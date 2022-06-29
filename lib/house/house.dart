@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:houses_olx/house/components/body.dart';
 import 'components/appbar.dart';
 
@@ -60,121 +63,55 @@ class _HouseScreenState extends State<HouseScreen>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: customAppbar(),
-      body: Body(),
-      floatingActionButton: Stack(
-        children: <Widget>[
-          Positioned(
-              right: 30,
-              bottom: 30,
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: <Widget>[
-                  IgnorePointer(
-                    child: Container(
-                      color: Colors.white.withOpacity(
-                          0.0), // comment or change to transparent color
-                      height: 150.0,
-                      width: 150.0,
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset.fromDirection(getRadiansFromDegree(270),
-                        degOneTranslationAnimation.value * 100),
-                    child: Transform(
-                      transform: Matrix4.rotationZ(
-                          getRadiansFromDegree(rotationAnimation.value))
-                        ..scale(degOneTranslationAnimation.value),
-                      alignment: Alignment.center,
-                      child: CircularButton(
-                        color: Colors.blue,
-                        width: 40,
-                        height: 40,
-                        icon: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        onClick: () {
-                          print('First Button');
-                        },
-                      ),
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset.fromDirection(getRadiansFromDegree(240),
-                        degTwoTranslationAnimation.value * 100),
-                    child: Transform(
-                      transform: Matrix4.rotationZ(
-                          getRadiansFromDegree(rotationAnimation.value))
-                        ..scale(degTwoTranslationAnimation.value),
-                      alignment: Alignment.center,
-                      child: CircularButton(
-                        color: Colors.blue.withOpacity(0.06),
-                        width: 40,
-                        height: 40,
-                        icon: Icon(
-                          Icons.shop_two,
-                          color: Colors.white,
-                        ),
-                        onClick: () {
-                          print('Second button');
-                        },
-                      ),
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset.fromDirection(getRadiansFromDegree(210),
-                        degThreeTranslationAnimation.value * 100),
-                    child: Transform(
-                      transform: Matrix4.rotationZ(
-                          getRadiansFromDegree(rotationAnimation.value))
-                        ..scale(degThreeTranslationAnimation.value),
-                      alignment: Alignment.center,
-                      child: CircularButton(
-                        color: Colors.blue.withOpacity(0.06),
-                        width: 40,
-                        height: 40,
-                        icon: Icon(
-                          Icons.screenshot,
-                          color: Colors.white,
-                        ),
-                        onClick: () {
-                          print('Third Button');
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ))
-        ],
+    final isDialOpen = ValueNotifier(false);
+    return WillPopScope(
+      onWillPop: () async {
+        if (isDialOpen.value) {
+          isDialOpen.value = false;
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: customAppbar(),
+        body: Body(),
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          backgroundColor: Colors.green[900],
+          overlayColor: Colors.black.withOpacity(0.04),
+          spacing: 4.h,
+          spaceBetweenChildren: 12.h,
+          openCloseDial: isDialOpen,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.share),
+              label: "Share",
+              backgroundColor: Colors.green[300],
+              onTap: () {},
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.star),
+              label: "Rate App",
+              backgroundColor: Colors.green[300],
+              onTap: () {},
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.screenshot),
+              label: "Take Snap",
+              backgroundColor: Colors.green[300],
+              onTap: () {},
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.add),
+              label: "Add post",
+              backgroundColor: Colors.green[300],
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
-    );
-  }
-}
-
-class CircularButton extends StatelessWidget {
-  final double width;
-  final double height;
-  final Color color;
-  final Icon icon;
-  final VoidCallback onClick;
-
-  CircularButton(
-      {required this.color,
-      required this.width,
-      required this.height,
-      required this.icon,
-      required this.onClick});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-      width: width,
-      height: height,
-      child: IconButton(icon: icon, enableFeedback: true, onPressed: onClick),
     );
   }
 }

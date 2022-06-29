@@ -67,8 +67,11 @@ class customHouseCard extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.r),
-                                border: Border.all(color: Colors.blueAccent)),
-                            child: Text('Apartment'),
+                                border: Border.all(color: Colors.green)),
+                            child: Text(
+                              'Apartment',
+                              style: TextStyle(color: Colors.green),
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -79,7 +82,7 @@ class customHouseCard extends StatelessWidget {
                             Text(
                               "\$1,800/ ",
                               style: TextStyle(
-                                color: Colors.blue,
+                                color: Colors.green,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18.sp,
                               ),
@@ -87,7 +90,7 @@ class customHouseCard extends StatelessWidget {
                             Text(
                               " month",
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: Colors.green[900],
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -115,21 +118,27 @@ class customHouseCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.location_on),
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.green[900],
+                            ),
                             SizedBox(
                               width: 16.w,
                             ),
                             Text(
                               "Pakistan , wah cantt",
                               style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.green[900],
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12.sp,
                               ),
                             ),
                           ],
                         ),
-                        Icon(Icons.favorite_outline),
+                        Icon(
+                          Icons.favorite_outline,
+                          color: Colors.green[900],
+                        ),
                       ],
                     ),
                   ],
