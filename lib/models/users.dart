@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserCreaditials {
-  final firstName;
+  final fullname;
   final lastName;
   final uid;
   final email;
@@ -15,7 +15,7 @@ class UserCreaditials {
   UserCreaditials({
     required this.email,
     required this.uid,
-    required this.firstName,
+    required this.fullname,
     required this.lastName,
     required this.phoneNo,
     required this.address,
@@ -26,7 +26,7 @@ class UserCreaditials {
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
-        "fullName": firstName,
+        "fullName": fullname,
         "lastName": lastName,
         "email": email,
         "uid": uid,
@@ -42,7 +42,7 @@ class UserCreaditials {
     return UserCreaditials(
       uid: snapshot['uid'],
       email: snapshot['email'],
-      firstName: snapshot['firstName'],
+      fullname: snapshot['fullName'],
       lastName: snapshot['lastName'],
       address: snapshot['address'],
       age: snapshot['age'],

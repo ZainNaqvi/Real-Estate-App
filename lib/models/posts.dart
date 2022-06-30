@@ -1,21 +1,22 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class UserPost {
-  final String title;
-  final String email;
-  final String contactnumber;
-  final String location;
-  final String overview;
-  final String price;
-  final String beds;
-  final String rooms;
-  final String sqft;
-  final String uid;
-  final String userName;
-  final String postId;
+  final title;
+  final email;
+  final contactnumber;
+  final location;
+  final overview;
+  final price;
+  final beds;
+  final rooms;
+  final sqft;
+  final uid;
+  final userName;
+  final postId;
   final datePublished;
-  final String postURL;
+  final postURL;
 
   final likes;
   // creating the constructor here...

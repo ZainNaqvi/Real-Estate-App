@@ -51,7 +51,7 @@ class _formState extends State<form> {
         isLoading = true;
       });
       String res = await FirebaseAuthMethods().completeProfile(
-        firstName: _userFirstNameController.text,
+        fullname: _userFirstNameController.text,
         lastName: _userLastNameController.text,
         phoneNumber: _userPhoneNumberController.text,
         address: _userAddressController.text,

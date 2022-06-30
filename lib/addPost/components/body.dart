@@ -39,10 +39,10 @@ class _BodyState extends State<Body> {
 // for adding post
 
   void addPost({
-    required String uid,
-    required String userName,
-    required String contactNumber,
-    required String email,
+    required final uid,
+    required final userName,
+    required final contactNumber,
+    required final email,
   }) async {
     setState(() {
       _isloading = true;
@@ -74,6 +74,8 @@ class _BodyState extends State<Body> {
         showSnakeBar(res, context);
       }
     } catch (e) {
+      print("\n\n\n\tkoi error\r\r\r\r\r\n");
+      print(e);
       showSnakeBar(e.toString(), context);
     }
   }
@@ -95,6 +97,10 @@ class _BodyState extends State<Body> {
     // provider code for gettiing the data from the databsae
     UserCreaditials userCreaditials =
         Provider.of<UserProviders>(context).getUser;
+    print(userCreaditials.email);
+    print(userCreaditials.phoneNo);
+    print(userCreaditials.lastName);
+    print(userCreaditials.uid);
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
@@ -272,7 +278,7 @@ class _BodyState extends State<Body> {
                             addPost(
                               uid: userCreaditials.uid,
                               email: userCreaditials.email,
-                              userName: userCreaditials.firstName,
+                              userName: userCreaditials.fullname,
                               contactNumber: userCreaditials.phoneNo,
                             );
                           }
