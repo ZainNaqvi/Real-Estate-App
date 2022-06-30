@@ -80,10 +80,30 @@ class _BodyState extends State<Body> {
             height: 16.h,
           ),
           Divider(),
+          SizedBox(
+            height: 24.h,
+          ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text("Edit Profile"),
-            trailing: Icon(Icons.arrow_forward_ios_outlined),
+            leading: Container(
+              width: 54.w,
+              height: 54.h,
+              decoration: BoxDecoration(
+                color: Colors.greenAccent,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.person),
+            ),
+            title: Text(
+              "Edit Profile",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18.sp),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios_outlined,
+              color: Colors.green,
+            ),
           ),
         ],
       ),
