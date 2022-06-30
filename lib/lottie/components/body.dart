@@ -83,6 +83,12 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
           SizedBox(
             height: 16.h,
           ),
+          Center(
+              child: SizedBox(
+            width: 50.w,
+            child: LinearProgressIndicator(color: Colors.green),
+          )),
+
           // Lottie.asset(
           //   "assets/lottie/loader.json",
           //   height: 120.h,
