@@ -41,6 +41,8 @@ class _BodyState extends State<Body> {
   void addPost({
     required String uid,
     required String userName,
+    required String contactNumber,
+    required String email,
   }) async {
     setState(() {
       _isloading = true;
@@ -57,6 +59,8 @@ class _BodyState extends State<Body> {
         price: _userPriceController.text,
         rooms: _userRoomsController.text,
         sqft: _userSQrtController.text,
+        contactNumber: contactNumber,
+        email: email,
       );
       if (res == "success") {
         setState(() {
@@ -89,8 +93,8 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     // provider code for gettiing the data from the databsae
-    // UserCreaditials? userCreaditials =
-    //     Provider.of<UserProviders>(context).getUser;
+    UserCreaditials userCreaditials =
+        Provider.of<UserProviders>(context).getUser;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0.w),
@@ -250,7 +254,7 @@ class _BodyState extends State<Body> {
                 ),
                 _isloading
                     ? CircularProgressIndicator(
-                        color: Colors.green[900],
+                        color: Colors.green,
                       )
                     : defaultButton(
                         text: "Send",
@@ -259,15 +263,17 @@ class _BodyState extends State<Body> {
                             // If the form is not valid, display a snackbar. In the real world,
 
                           } else {
-                            UserCreaditials? _users;
-                            final FirebaseAuthMethods _auth =
-                                FirebaseAuthMethods();
-                            UserCreaditials userCreaditials =
-                                await _auth.getUserDetails();
-                            // ignore: prefer_interpolation_to_compose_strings
+                            print("button clicked");
+                            // UserCreaditials? _users;
+                            // final FirebaseAuthMethods _auth = FirebaseAuthMethods();
+                            // UserCreaditials userCreaditials =
+                            //     await _auth.getUserDetails();
+
                             addPost(
                               uid: userCreaditials.uid,
+                              email: userCreaditials.email,
                               userName: userCreaditials.firstName,
+                              contactNumber: userCreaditials.phoneNo,
                             );
                           }
                         }),

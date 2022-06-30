@@ -11,9 +11,12 @@ class UserProviders extends ChangeNotifier {
   // getter of the _users
   UserCreaditials get getUser => _users!;
   Future<void> refreshUser() async {
+    print("\n\n\nWorking tree file");
     isLoading = true;
     UserCreaditials userCreaditials = await _auth.getUserDetails();
     _users = userCreaditials;
+    print("\n\n\nWorking tree file");
+    print(userCreaditials.address);
     isLoading = false;
     notifyListeners();
   }

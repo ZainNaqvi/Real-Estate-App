@@ -38,11 +38,11 @@ class _formState extends State<form> {
   }
 
   final _formKey = GlobalKey<FormState>();
-  dynamic _genderMale = "male";
+  String _genderMale = "male";
   double _age = 0;
 
   var countries = ["Pakistan", "India", "China", "Afghanistan", "others"];
-  Object? selectedCountry = "Pakistan";
+  String? selectedCountry = "Pakistan";
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _formState extends State<form> {
         cnic: _userCNICController.text,
         country: selectedCountry.toString(),
         age: _age.toString(),
-        gender: _genderMale,
+        gender: _genderMale.toString(),
         context: context,
       );
       if (res == 'success') {
@@ -203,9 +203,9 @@ class _formState extends State<form> {
                     ),
                   ));
             }).toList(),
-            onChanged: (newValue) {
+            onChanged: (String? newValue) {
               // do other stuff with _category
-              setState(() => selectedCountry = newValue);
+              setState(() => selectedCountry = newValue!);
             },
             value: selectedCountry,
             decoration: customInputDecoration(
@@ -246,7 +246,7 @@ class _formState extends State<form> {
                 autofocus: true,
                 value: "male",
                 groupValue: _genderMale,
-                onChanged: (value) {
+                onChanged: (String? value) {
                   setState(() {
                     _genderMale = value!;
                   });
@@ -264,7 +264,7 @@ class _formState extends State<form> {
               Radio(
                 value: "Female",
                 groupValue: _genderMale,
-                onChanged: (value) {
+                onChanged: (String? value) {
                   setState(() {
                     _genderMale = value!;
                   });

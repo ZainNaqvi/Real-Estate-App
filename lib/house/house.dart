@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:houses_olx/house/components/body.dart';
+import 'package:houses_olx/models/users.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import '../provider/userProviders.dart';
 import 'components/appbar.dart';
 
 class HouseScreen extends StatefulWidget {
@@ -27,6 +30,15 @@ class _HouseScreenState extends State<HouseScreen>
 
   //   return result['filePath'];
   // }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+
 
   Future saveAndShare(Uint8List bytes) async {
     final directry = await getApplicationDocumentsDirectory();

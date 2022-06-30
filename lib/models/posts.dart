@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class UserPost {
   final String title;
+  final String email;
+  final String contactnumber;
   final String location;
   final String overview;
   final String price;
@@ -19,6 +21,8 @@ class UserPost {
   // creating the constructor here...
   UserPost({
     required this.title,
+    required this.contactnumber,
+    required this.email,
     required this.uid,
     required this.userName,
     required this.postId,
@@ -34,6 +38,8 @@ class UserPost {
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
+        "contactnumber": contactnumber,
+        "useremail": email,
         "title": title,
         "userName": userName,
         "location": location,
@@ -50,6 +56,8 @@ class UserPost {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return UserPost(
       uid: snapshot['uid'],
+      email: snapshot['email'],
+      contactnumber: snapshot['contactnumber'],
       userName: snapshot['userName'],
       likes: snapshot['likes'],
       datePublished: snapshot['datePublished'],

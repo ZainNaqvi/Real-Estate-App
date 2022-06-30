@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class UserCreaditials {
-  final String firstName;
-  final String lastName;
-  final String uid;
-  final String email;
-  final String phoneNo;
-  final String address;
-  final String cnic;
-  final String gender;
-  final String age;
-  final String country;
+  final firstName;
+  final lastName;
+  final uid;
+  final email;
+  final phoneNo;
+  final address;
+  final cnic;
+  final gender;
+  final age;
+  final country;
   // creating the constructor here...
   UserCreaditials({
     required this.email,

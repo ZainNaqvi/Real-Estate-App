@@ -11,6 +11,8 @@ class FirestoreMethods {
   Future<String> uploadPost({
     required Uint8List file,
     required String uid,
+    required String contactNumber,
+    required String email,
     required String username,
     required String title,
     required String location,
@@ -33,6 +35,8 @@ class FirestoreMethods {
         title: title,
         uid: uid,
         userName: username,
+        contactnumber: contactNumber,
+        email: email,
         postId: postId,
         datePublished: DateTime.now(),
         postURL: imageURL,

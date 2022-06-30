@@ -85,14 +85,14 @@ class FirebaseAuthMethods {
 
   // complete profile
   Future<String> completeProfile({
-    required String firstName,
-    required String lastName,
-    required String phoneNumber,
-    required String address,
-    required String cnic,
-    required String country,
-    required String age,
-    required String gender,
+    required String? firstName,
+    required String? lastName,
+    required String? phoneNumber,
+    required String? address,
+    required String? cnic,
+    required String? country,
+    required String? age,
+    required String? gender,
     required BuildContext context,
   }) async {
     String res = "Some error occured";
@@ -100,14 +100,14 @@ class FirebaseAuthMethods {
       UserCreaditials userCreaditials = UserCreaditials(
         email: _auth.currentUser!.email!,
         uid: _auth.currentUser!.uid,
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        age: age,
-        gender: gender,
-        country: country,
-        cnic: cnic,
-        phoneNo: phoneNumber,
+        firstName: firstName!,
+        lastName: lastName!,
+        address: address!,
+        age: age!,
+        gender: gender!,
+        country: country!,
+        cnic: cnic!,
+        phoneNo: phoneNumber!,
       );
       _firebaseFirestore
           .collection("users")
