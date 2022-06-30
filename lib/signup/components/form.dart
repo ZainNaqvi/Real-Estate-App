@@ -1,18 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/completeProfile/completeProfile.dart';
 import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
-import 'package:houses_olx/signup/components/verifyemail.dart';
-import 'package:houses_olx/signup/signup.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
-import '../../widget/customOutlineBorder.dart';
 import '../../widget/customTextFormLable.dart';
 import '../../widget/default.dart';
-import '../../widget/dropdown.dart';
 import '../../widget/inputDecoration.dart';
-
 import '../../widget/validator.dart';
 
 class FormFields extends StatefulWidget {

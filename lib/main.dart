@@ -20,6 +20,7 @@ void main() async {
         appId: "1:74172720956:web:dee9363c0132679a16e039",
         messagingSenderId: "74172720956",
         projectId: "olxclon-fac7d",
+        storageBucket: "olxclon-fac7d.appspot.com",
       ),
     );
   } else {

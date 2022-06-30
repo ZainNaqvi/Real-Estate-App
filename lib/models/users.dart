@@ -11,8 +11,10 @@ class UserCreaditials {
   final gender;
   final age;
   final country;
+  final profilePic;
   // creating the constructor here...
   UserCreaditials({
+    required this.profilePic,
     required this.email,
     required this.uid,
     required this.fullname,
@@ -26,6 +28,7 @@ class UserCreaditials {
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
+        "profilePic": profilePic,
         "fullName": fullname,
         "lastName": lastName,
         "email": email,
@@ -40,6 +43,7 @@ class UserCreaditials {
   static UserCreaditials fromSnap(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return UserCreaditials(
+      profilePic: snapshot['profilePic'],
       uid: snapshot['uid'],
       email: snapshot['email'],
       fullname: snapshot['fullName'],

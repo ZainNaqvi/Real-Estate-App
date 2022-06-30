@@ -1,9 +1,12 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:houses_olx/db/authentication/storage_methods.dart';
 import 'package:houses_olx/models/users.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
 // ignore: avoid_web_libraries_in_flutter
@@ -85,6 +88,7 @@ class FirebaseAuthMethods {
 
   // complete profile
   Future<String> completeProfile({
+    required Uint8List profilePic,
     required String fullname,
     required String lastName,
     required String phoneNumber,
@@ -97,9 +101,12 @@ class FirebaseAuthMethods {
   }) async {
     String res = "Some error occured";
     try {
+      String photoUrl = await StorageMethods()
+          .uploadImageToStorage("ProfilePics", profilePic, false);
       UserCreaditials userCreaditials = UserCreaditials(
         email: _auth.currentUser!.email!,
         uid: _auth.currentUser!.uid,
+        profilePic: photoUrl,
         fullname: fullname,
         lastName: lastName,
         address: address,

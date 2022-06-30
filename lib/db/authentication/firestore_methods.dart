@@ -10,6 +10,7 @@ class FirestoreMethods {
   // for uploading the image
   Future<String> uploadPost({
     required Uint8List file,
+    required String houseType,
     required final uid,
     required final contactNumber,
     required final email,

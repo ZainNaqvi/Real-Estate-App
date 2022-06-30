@@ -11,14 +11,14 @@ class StorageMethods {
   Future<String> uploadImageToStorage(
     String childName,
     Uint8List file,
-    bool ishouse,
+    bool ispost,
   ) async {
     // creating location to our firebase storage
 
     Reference ref =
         _storage.ref().child(childName).child(_auth.currentUser!.uid);
     // putting in uint8list format -> Upload task like a future but not future
-    if (ishouse) {
+    if (ispost) {
       String id = const Uuid().v1();
       ref = ref.child(id);
     }

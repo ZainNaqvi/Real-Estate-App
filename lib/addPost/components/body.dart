@@ -37,7 +37,7 @@ class _BodyState extends State<Body> {
 
   bool _isloading = false;
 // for adding post
-
+  String _houseType = "house";
   void addPost({
     required final uid,
     required final userName,
@@ -49,6 +49,7 @@ class _BodyState extends State<Body> {
     });
     try {
       String res = await FirestoreMethods().uploadPost(
+        houseType: _houseType,
         file: _file!,
         title: _userTitleController.text,
         uid: uid,
@@ -67,6 +68,7 @@ class _BodyState extends State<Body> {
           _isloading = false;
         });
         showSnakeBar("The post successfully posted.", context);
+        clearPage();
       } else {
         setState(() {
           _isloading = false;
@@ -78,6 +80,19 @@ class _BodyState extends State<Body> {
       print(e);
       showSnakeBar(e.toString(), context);
     }
+  }
+
+  clearPage() {
+    setState(() {
+      _file = null;
+      _userTitleController.text = "";
+      _userLocationController.text = "";
+      _userBedsController.text = "";
+      _userOverViewController.text = "";
+      _userPriceController.text = "";
+      _userRoomsController.text = "";
+      _userSQrtController.text = "";
+    });
   }
 
   @override
@@ -160,6 +175,61 @@ class _BodyState extends State<Body> {
               children: [
                 SizedBox(
                   height: 8.h,
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      autofocus: true,
+                      value: "house",
+                      groupValue: _houseType,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _houseType = value!;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Text(
+                      "House",
+                    ),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    Radio(
+                      value: "villa",
+                      groupValue: _houseType,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _houseType = value!;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Text("Villa"),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    Radio(
+                      value: "apartment",
+                      groupValue: _houseType,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _houseType = value!;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Text("Apartment"),
+                  ],
+                ),
+                SizedBox(
+                  height: 16.h,
                 ),
                 TextFormField(
                   validator: requiredField,

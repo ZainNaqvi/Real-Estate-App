@@ -1,11 +1,16 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
-import 'package:houses_olx/feed/feedScreen.dart';
+import 'package:houses_olx/signin/signin.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../widget/customTextFormLable.dart';
 import '../../widget/default.dart';
+import '../../widget/imagepicker.dart';
 import '../../widget/inputDecoration.dart';
 import '../../widget/validator.dart';
 
@@ -37,6 +42,16 @@ class _formState extends State<form> {
     _userCNICController.dispose();
   }
 
+  Uint8List? _imageURL;
+  selectedImage() async {
+    Uint8List imageURL = await pickImage(
+      ImageSource.gallery,
+    );
+    setState(() {
+      _imageURL = imageURL;
+    });
+  }
+
   final _formKey = GlobalKey<FormState>();
   String _genderMale = "male";
   double _age = 0;
@@ -51,6 +66,7 @@ class _formState extends State<form> {
         isLoading = true;
       });
       String res = await FirebaseAuthMethods().completeProfile(
+        profilePic: _imageURL!,
         fullname: _userFirstNameController.text,
         lastName: _userLastNameController.text,
         phoneNumber: _userPhoneNumberController.text,
@@ -68,7 +84,7 @@ class _formState extends State<form> {
         showSnakeBar("Saved Successfully.", context);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => FeedScreen(),
+            builder: (context) => Signin(),
           ),
         );
       }
@@ -78,6 +94,52 @@ class _formState extends State<form> {
       key: _formKey,
       child: Column(
         children: [
+          InkWell(
+            borderRadius: BorderRadius.circular(50),
+            onTap: () => selectedImage(),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  child: _imageURL != null
+                      ? CircleAvatar(
+                          key: UniqueKey(),
+                          backgroundImage: MemoryImage(
+                            _imageURL!,
+                          ),
+                          backgroundColor: Colors.white.withOpacity(0.13),
+                          radius: 50,
+                        )
+                      : CircleAvatar(
+                          key: UniqueKey(),
+                          backgroundImage:
+                              NetworkImage("assets/images/default-profile.jpg"),
+                          backgroundColor: Colors.white.withOpacity(0.13),
+                          radius: 50,
+                        ),
+                ),
+                Positioned(
+                  bottom: -5,
+                  right: -3,
+                  child: Container(
+                    padding: EdgeInsets.all(9),
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/icons/camera.svg",
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // end of teh imamge
+          SizedBox(height: 24.h),
           customTextFieldLable(
             isRequired: true,
             lableText: "First Name",
