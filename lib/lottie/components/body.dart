@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/feed/feedScreen.dart';
 import 'package:houses_olx/splashScreen/splashscreen.dart';
 import 'package:lottie/lottie.dart';
@@ -17,16 +18,20 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   // Animation controller
   late AnimationController _animationController;
+  bool isloading = false;
   @override
   void initState() {
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(
-          seconds: 10,
+          seconds: 5,
         ));
 
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
+        setState(() {
+          isloading = true;
+        });
         // Get the firebase user
         User? firebaseUser = FirebaseAuth.instance.currentUser;
 // Define a widget
@@ -44,6 +49,9 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         );
       }
       ;
+      setState(() {
+        isloading = false;
+      });
     });
     // TODO: implement initState
     super.initState();
@@ -59,12 +67,28 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Lottie.asset(
-        "assets/lottie/house.json",
-        controller: _animationController,
-        onLoaded: (compostion) {
-          _animationController.forward();
-        },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            "assets/lottie/house.json",
+            controller: _animationController,
+            height: 120.h,
+            width: 120.w,
+            onLoaded: (compostion) {
+              _animationController.forward();
+            },
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
+          // Lottie.asset(
+          //   "assets/lottie/loader.json",
+          //   height: 120.h,
+          //   width: 120.w,
+          // ),
+        ],
       ),
     );
   }

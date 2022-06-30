@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class customHouseCard extends StatelessWidget {
-  const customHouseCard({
+  final snap;
+  customHouseCard({
     Key? key,
+    required this.snap,
   }) : super(key: key);
 
   @override
@@ -21,10 +23,18 @@ class customHouseCard extends StatelessWidget {
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.asset(
-                key: UniqueKey(),
-                'assets/images/eral.jpg',
-                fit: BoxFit.fill,
+              child: Container(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                height: 170.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      snap!["postURL"],
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -80,7 +90,7 @@ class customHouseCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "\$1,800/ ",
+                              snap!["price"],
                               style: TextStyle(
                                 color: Colors.green,
                                 fontWeight: FontWeight.w500,
@@ -126,7 +136,7 @@ class customHouseCard extends StatelessWidget {
                               width: 16.w,
                             ),
                             Text(
-                              "Pakistan , wah cantt",
+                              snap!["location"],
                               style: TextStyle(
                                 color: Colors.green[900],
                                 fontWeight: FontWeight.w500,

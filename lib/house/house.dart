@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:houses_olx/house/components/body.dart';
+import 'package:houses_olx/house/components/card.dart';
 import 'package:houses_olx/models/users.dart';
+import 'package:houses_olx/widget/customCard.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -35,10 +38,7 @@ class _HouseScreenState extends State<HouseScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
-
-
 
   Future saveAndShare(Uint8List bytes) async {
     final directry = await getApplicationDocumentsDirectory();
@@ -66,7 +66,32 @@ class _HouseScreenState extends State<HouseScreen>
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: customAppbar(),
-          body: Body(),
+          body: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("posts")
+                .orderBy(
+                  'datePublished',
+                  descending: true,
+                )
+                .snapshots(),
+            builder: (context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.green,
+                  ),
+                );
+              }
+
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) => customHouseCard(
+                  snap: snapshot.data!.docs[index].data(),
+                ),
+              );
+            },
+          ),
           floatingActionButton: SpeedDial(
             animatedIcon: AnimatedIcons.menu_close,
             backgroundColor: Colors.green[900],
@@ -92,9 +117,9 @@ class _HouseScreenState extends State<HouseScreen>
                 label: "Take Snap",
                 backgroundColor: Colors.green[300],
                 onTap: () async {
-                  final image = await _controller.captureFromWidget(Body());
+                  final image = await _controller.capture();
 
-                  saveAndShare(image);
+                  saveAndShare(image!);
                   // final result = await saveImage(image);
                   // print(result);
                 },
