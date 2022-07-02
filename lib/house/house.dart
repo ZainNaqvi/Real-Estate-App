@@ -43,6 +43,7 @@ class _HouseScreenState extends State<HouseScreen>
     await Share.shareFiles([image.path]);
   }
 
+  bool loading = true;
   final _controller = ScreenshotController();
   @override
   Widget build(BuildContext context) {
@@ -74,10 +75,17 @@ class _HouseScreenState extends State<HouseScreen>
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: CupertinoActivityIndicator(radius: 50),
+                  child: CupertinoActivityIndicator(
+                    radius: 35,
+                    animating: true,
+                    color: Colors.green,
+                  ),
                 );
+              } else {
+                setState(() {
+                  loading = false;
+                });
               }
-
               return ListView.custom(
                 childrenDelegate: SliverChildBuilderDelegate(
                   (BuildContext, index) {
@@ -93,46 +101,48 @@ class _HouseScreenState extends State<HouseScreen>
               );
             },
           ),
-          floatingActionButton: SpeedDial(
-            animatedIcon: AnimatedIcons.menu_close,
-            backgroundColor: Colors.green[900],
-            overlayColor: Colors.black.withOpacity(0.04),
-            spacing: 4.h,
-            spaceBetweenChildren: 12.h,
-            openCloseDial: isDialOpen,
-            children: [
-              SpeedDialChild(
-                child: Icon(Icons.share),
-                label: "Share",
-                backgroundColor: Colors.green[300],
-                onTap: () {},
-              ),
-              SpeedDialChild(
-                child: Icon(Icons.star),
-                label: "Rate App",
-                backgroundColor: Colors.green[300],
-                onTap: () {},
-              ),
-              SpeedDialChild(
-                child: Icon(Icons.screenshot),
-                label: "Take Snap",
-                backgroundColor: Colors.green[300],
-                onTap: () async {
-                  final image = await _controller.capture();
+          floatingActionButton: loading
+              ? Container()
+              : SpeedDial(
+                  animatedIcon: AnimatedIcons.menu_close,
+                  backgroundColor: Colors.green[900],
+                  overlayColor: Colors.black.withOpacity(0.04),
+                  spacing: 4.h,
+                  spaceBetweenChildren: 12.h,
+                  openCloseDial: isDialOpen,
+                  children: [
+                    SpeedDialChild(
+                      child: Icon(Icons.share),
+                      label: "Share",
+                      backgroundColor: Colors.green[300],
+                      onTap: () {},
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.star),
+                      label: "Rate App",
+                      backgroundColor: Colors.green[300],
+                      onTap: () {},
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.screenshot),
+                      label: "Take Snap",
+                      backgroundColor: Colors.green[300],
+                      onTap: () async {
+                        final image = await _controller.capture();
 
-                  saveAndShare(image!);
-                  // final result = await saveImage(image);
-                  // print(result);
-                },
-              ),
-              SpeedDialChild(
-                child: Icon(Icons.add),
-                label: "Add post",
-                backgroundColor: Colors.green[300],
-                onTap: () {},
-              ),
-            ],
-          ),
+                        saveAndShare(image!);
+                        // final result = await saveImage(image);
+                        // print(result);
+                      },
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.add),
+                      label: "Add post",
+                      backgroundColor: Colors.green[300],
+                      onTap: () {},
+                    ),
+                  ],
+                ),
         ),
       ),
     );

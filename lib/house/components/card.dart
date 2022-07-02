@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,23 +26,19 @@ class customHouseCard extends StatelessWidget {
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: snap!["postURL"] == null
-                  ? Center(
-                      child: CupertinoActivityIndicator(),
-                    )
-                  : Container(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      height: 170.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            snap!["postURL"],
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+              child: Container(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                height: 170.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      snap!["postURL"],
                     ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.r),

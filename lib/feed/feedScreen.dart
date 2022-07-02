@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:houses_olx/feed/global_variables.dart';
 
 import '../widget/floatingActionButton.dart';
@@ -51,105 +53,88 @@ class _FeedScreenState extends State<FeedScreen> {
         controller: pageController,
         onPageChanged: onPageChanged,
       ),
-      bottomNavigationBar: CupertinoTabBar(
-        border: Border(
-          top: BorderSide(color: Colors.green.shade50, width: 0.0),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(vertical: 24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(0, -15),
+                blurRadius: 20.0,
+                color: Color(0xFFDADADA).withOpacity(0.45))
+          ],
         ),
-        height: 70.sp,
-        backgroundColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50.w,
-              height: 36.h,
-              decoration: BoxDecoration(
-                  color: _page == 0
-                      ? Colors.green
-                      : Colors.black.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Icon(
-                Icons.home,
-                size: _page == 0 ? 24.sp : 20.sp,
-                color: _page == 0 ? Colors.white : Colors.grey,
+        child: SafeArea(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedTab(0);
+                });
+              },
+              icon: Icon(
+                FontAwesomeIcons.home,
+                color: _page == 0
+                    ? Colors.green.withOpacity(0.5)
+                    : Color(0xFFB6B6B6B6),
               ),
             ),
-            label: "",
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50.w,
-              height: 36.h,
-              decoration: BoxDecoration(
-                  color: _page == 1
-                      ? Colors.green
-                      : Colors.black.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Icon(
-                Icons.favorite,
-                size: _page == 1 ? 24.sp : 20.sp,
-                color: _page == 1 ? Colors.white : Colors.grey,
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedTab(1);
+                });
+              },
+              icon: Icon(
+                FontAwesomeIcons.search,
+                color: _page == 1
+                    ? Colors.green.withOpacity(0.5)
+                    : Color(0xFFB6B6B6B6),
               ),
             ),
-            label: "",
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50.w,
-              height: 36.h,
-              decoration: BoxDecoration(
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedTab(2);
+                });
+              },
+              icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
                   color: _page == 2
-                      ? Colors.green
-                      : Colors.black.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Icon(
-                Icons.add,
-                size: _page == 2 ? 24.sp : 20.sp,
-                color: _page == 2 ? Colors.white : Colors.grey,
+                      ? Colors.green.withOpacity(0.5)
+                      : Color(0xFFB6B6B6B6)),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedTab(3);
+                });
+              },
+              icon: Icon(
+                FontAwesomeIcons.images,
+                color: _page == 3
+                    ? Colors.green.withOpacity(0.5)
+                    : Color(0xFFB6B6B6B6),
               ),
             ),
-            label: "",
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50.w,
-              height: 36.h,
-              decoration: BoxDecoration(
-                  color: _page == 3
-                      ? Colors.green
-                      : Colors.black.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Icon(
-                Icons.messenger_outline,
-                size: _page == 3 ? 24.sp : 20.sp,
-                color: _page == 3 ? Colors.white : Colors.grey,
-              ),
-            ),
-            label: "",
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50.w,
-              height: 36.h,
-              decoration: BoxDecoration(
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedTab(4);
+                });
+              },
+              icon: SvgPicture.asset("assets/icons/User Icon.svg",
                   color: _page == 4
-                      ? Colors.green
-                      : Colors.black.withOpacity(0.04),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Icon(
-                Icons.person,
-                size: _page == 4 ? 24.sp : 20.sp,
-                color: _page == 4 ? Colors.white : Colors.grey,
-              ),
+                      ? Colors.red.withOpacity(0.5)
+                      : Color(0xFFB6B6B6B6)),
             ),
-            label: "",
-            backgroundColor: Colors.white,
-          ),
-        ],
-        onTap: selectedTab,
+          ],
+        )),
       ),
     );
   }

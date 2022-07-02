@@ -189,7 +189,11 @@ class _FormFieldsState extends State<FormFields> {
           ),
           isLoading
               ? Center(
-                  child: CupertinoActivityIndicator(),
+                  child: CupertinoActivityIndicator(
+                      animating: true,
+                      color: Colors.green,
+                      radius: 24,
+                      key: UniqueKey()),
                 )
               : defaultButton(
                   text: "Sign in",

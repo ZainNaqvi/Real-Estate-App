@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,9 +19,8 @@ class Body extends StatelessWidget {
             Container(
               height: 300.h,
               width: double.infinity,
-              child: Image.network(
-                snap!["postURL"],
-                fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                imageUrl: snap!["postURL"],
               ),
             ),
             Positioned(
