@@ -26,7 +26,9 @@ class _SearchScreenState extends State<SearchScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          elevation: 0,
+          leading: null,
+          backgroundColor: Colors.white,
           title: TextFormField(
             controller: searchEditingController,
             decoration: InputDecoration(
@@ -45,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 future: FirebaseFirestore.instance
                     .collection('users')
                     .where(
-                      'userName',
+                      'fullName',
                       isGreaterThanOrEqualTo: searchEditingController.text,
                     )
                     .get(),
@@ -69,29 +71,17 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: ListTile(
                           leading: CircleAvatar(
                             backgroundImage: NetworkImage(
-                              snapshot.data!.docs[index]['photoURL'],
+                              snapshot.data!.docs[index]['profilePic'],
                             ),
                           ),
                           title: Text(
-                            (snapshot.data! as dynamic).docs[index]['userName'],
+                            snapshot.data!.docs[index]['fullName'],
                           ),
                           subtitle: Text(
-                            (snapshot.data! as dynamic).docs[index]['email'],
+                            snapshot.data!.docs[index]['email'],
                             style: TextStyle(
                               color: Colors.grey,
                             ),
-                          ),
-                          trailing: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                            ),
-                            child: Text(
-                              "Follow",
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                            onPressed: () {},
                           ),
                         ),
                       );
@@ -105,9 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                         snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return LinearProgressIndicator(
-                      color: Colors.white,
-                    );
+                    return Center(child: CircularProgressIndicator());
                   }
                   return ListView.builder(
                     itemCount: snapshot.data!.docs.length,
@@ -118,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           onTap: () {},
                           child: ListTile(
                             title: Text(
-                              snapshot.data!.docs[index]['userName'],
+                              snapshot.data!.docs[index]['fullName'],
                             ),
                             subtitle: Text(
                               snapshot.data!.docs[index]['email'],
@@ -128,20 +116,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                             leading: CircleAvatar(
                               backgroundImage: NetworkImage(
-                                snapshot.data!.docs[index]['photoURL'],
+                                snapshot.data!.docs[index]['profilePic'],
                               ),
-                            ),
-                            trailing: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                              ),
-                              child: Text(
-                                "Follow",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              onPressed: () {},
                             ),
                           ),
                         ),

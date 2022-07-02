@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'constrains.dart';
 
@@ -14,43 +15,43 @@ final Map<AppTheme, ThemeData> appThemeData = {
     scaffoldBackgroundColor: kDarkBackground,
     backgroundColor: kDarkPlaceholder,
     errorColor: kDarkError,
-    // textTheme: GoogleFonts.poppinsTextTheme(
-    //   const TextTheme().copyWith(
-    //     headline1: TextStyle(
-    //       fontSize: 48.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     headline2: TextStyle(
-    //       fontSize: 32.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     headline3: TextStyle(
-    //       fontSize: 24.sp,
-    //       color: kDarkTextColor,
-    //       fontWeight: FontWeight.bold,
-    //     ),
-    //     headline4: TextStyle(
-    //       fontSize: 24.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     headline5: TextStyle(
-    //       fontSize: 20.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     headline6: TextStyle(
-    //       fontSize: 16.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     bodyText1: TextStyle(
-    //       fontSize: 12.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //     bodyText2: TextStyle(
-    //       fontSize: 14.sp,
-    //       color: kDarkTextColor,
-    //     ),
-    //   ),
-    // ),
+    textTheme: GoogleFonts.poppinsTextTheme(
+      const TextTheme().copyWith(
+        headline1: TextStyle(
+          fontSize: 48.sp,
+          color: kDarkTextColor,
+        ),
+        headline2: TextStyle(
+          fontSize: 32.sp,
+          color: kDarkTextColor,
+        ),
+        headline3: TextStyle(
+          fontSize: 24.sp,
+          color: kDarkTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+        headline4: TextStyle(
+          fontSize: 24.sp,
+          color: kDarkTextColor,
+        ),
+        headline5: TextStyle(
+          fontSize: 20.sp,
+          color: kDarkTextColor,
+        ),
+        headline6: TextStyle(
+          fontSize: 16.sp,
+          color: kDarkTextColor,
+        ),
+        bodyText1: TextStyle(
+          fontSize: 12.sp,
+          color: kDarkTextColor,
+        ),
+        bodyText2: TextStyle(
+          fontSize: 14.sp,
+          color: kDarkTextColor,
+        ),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         elevation: MaterialStateProperty.all(0),
@@ -123,63 +124,63 @@ final Map<AppTheme, ThemeData> appThemeData = {
     scaffoldBackgroundColor: kLightBackground,
     backgroundColor: kLightPlaceholder,
     errorColor: kLightError,
-    // textTheme: GoogleFonts.openSansTextTheme(
-    //   const TextTheme().copyWith(
-    //     headline1: TextStyle(
-    //       fontSize: 48.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     headline2: TextStyle(
-    //       fontSize: 32.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     headline3: TextStyle(
-    //       fontSize: 24.sp,
-    //       color: kLightTextColor,
-    //       fontWeight: FontWeight.bold,
-    //     ),
-    //     headline4: TextStyle(
-    //       fontSize: 24.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     headline5: TextStyle(
-    //       fontSize: 20.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     headline6: TextStyle(
-    //       fontSize: 16.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     bodyText1: TextStyle(
-    //       fontSize: 12.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //     bodyText2: TextStyle(
-    //       fontSize: 14.sp,
-    //       color: kLightTextColor,
-    //     ),
-    //   ),
-    // ),
-    // elevatedButtonTheme: ElevatedButtonThemeData(
-    //   style: ButtonStyle(
-    //     elevation: MaterialStateProperty.all(5),
-    //     minimumSize: MaterialStateProperty.all(
-    //       Size(double.infinity, 56.h),
-    //     ),
-    //     shape: MaterialStateProperty.all(
-    //       const StadiumBorder(),
-    //     ),
-    //     foregroundColor: MaterialStateProperty.all(
-    //       kDarkTextColor,
-    //     ),
-    //     textStyle: MaterialStateProperty.all(
-    //       TextStyle(
-    //         fontSize: 16.sp,
-    //         color: kDarkTextColor,
-    //       ),
-    //     ),
-    //   ),
-    // ),
+    textTheme: GoogleFonts.openSansTextTheme(
+      const TextTheme().copyWith(
+        headline1: TextStyle(
+          fontSize: 48.sp,
+          color: kLightTextColor,
+        ),
+        headline2: TextStyle(
+          fontSize: 32.sp,
+          color: kLightTextColor,
+        ),
+        headline3: TextStyle(
+          fontSize: 24.sp,
+          color: kLightTextColor,
+          fontWeight: FontWeight.bold,
+        ),
+        headline4: TextStyle(
+          fontSize: 24.sp,
+          color: kLightTextColor,
+        ),
+        headline5: TextStyle(
+          fontSize: 20.sp,
+          color: kLightTextColor,
+        ),
+        headline6: TextStyle(
+          fontSize: 16.sp,
+          color: kLightTextColor,
+        ),
+        bodyText1: TextStyle(
+          fontSize: 12.sp,
+          color: kLightTextColor,
+        ),
+        bodyText2: TextStyle(
+          fontSize: 14.sp,
+          color: kLightTextColor,
+        ),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(5),
+        minimumSize: MaterialStateProperty.all(
+          Size(double.infinity, 56.h),
+        ),
+        shape: MaterialStateProperty.all(
+          const StadiumBorder(),
+        ),
+        foregroundColor: MaterialStateProperty.all(
+          kDarkTextColor,
+        ),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            fontSize: 16.sp,
+            color: kDarkTextColor,
+          ),
+        ),
+      ),
+    ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(kLightPrimary),
