@@ -81,14 +81,14 @@ class _HouseScreenState extends State<HouseScreen>
                     color: Colors.green,
                   ),
                 );
-              } else {
-                setState(() {
-                  loading = false;
-                });
               }
+
               return ListView.custom(
                 childrenDelegate: SliverChildBuilderDelegate(
                   (BuildContext, index) {
+                    setState(() {
+                      loading = false;
+                    });
                     return customHouseCard(
                       snap: snapshot.data!.docs[index].data(),
                     );
