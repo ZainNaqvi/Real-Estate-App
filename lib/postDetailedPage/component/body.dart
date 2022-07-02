@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:houses_olx/db/authentication/firestore_methods.dart';
 
 class Body extends StatelessWidget {
   final snap;
@@ -26,15 +27,23 @@ class Body extends StatelessWidget {
             Positioned(
               bottom: -5.h,
               right: -20.w,
-              child: Container(
-                width: 115.w,
-                height: 115.h,
-                decoration: BoxDecoration(
-                    color: Colors.black38, shape: BoxShape.circle),
-                child: Icon(
-                  FontAwesomeIcons.thumbsUp,
-                  size: 54.sp,
-                  color: Colors.white,
+              child: InkWell(
+                onTap: () {
+                  FirestoreMethods().likePost(
+                      postId: snap!["postId"],
+                      uid: snap!["uid"],
+                      like: snap!["likes"]);
+                },
+                child: Container(
+                  width: 115.w,
+                  height: 115.h,
+                  decoration: BoxDecoration(
+                      color: Colors.black38, shape: BoxShape.circle),
+                  child: Icon(
+                    FontAwesomeIcons.thumbsUp,
+                    size: 54.sp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -60,7 +69,7 @@ class Body extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.r),
                           border: Border.all(color: Colors.green)),
                       child: Text(
-                        'Apartment',
+                        snap!["houseType"],
                         style: TextStyle(color: Colors.green),
                       ),
                     ),
@@ -74,7 +83,7 @@ class Body extends StatelessWidget {
                       SizedBox(
                         width: 8.w,
                       ),
-                      Text("23 Likes"),
+                      Text(snap!["likes"].length.toString() + " Likes"),
                     ],
                   ),
                 ],
@@ -83,7 +92,7 @@ class Body extends StatelessWidget {
                 height: 14.h,
               ),
               Text(
-                "Owent Apartment",
+                snap!["title"],
                 style: TextStyle(
                   fontSize: 28.sp,
                   fontWeight: FontWeight.w600,
@@ -101,7 +110,7 @@ class Body extends StatelessWidget {
                   SizedBox(
                     width: 4.w,
                   ),
-                  Text("data"),
+                  Text(snap!["location"]),
                 ],
               ),
               SizedBox(
@@ -110,11 +119,16 @@ class Body extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  statsHouse(iconData: Icons.bed, items: "4", title: "Beds"),
                   statsHouse(
-                      iconData: Icons.bathroom, items: "6", title: "Bath"),
+                      iconData: Icons.bed, items: snap!["beds"], title: "Beds"),
                   statsHouse(
-                      iconData: Icons.expand, items: "1,2343", title: "sqft"),
+                      iconData: Icons.bathroom,
+                      items: snap!["rooms"],
+                      title: "Rooms"),
+                  statsHouse(
+                      iconData: Icons.expand,
+                      items: snap!["sqft"],
+                      title: "sqft"),
                 ],
               ),
               SizedBox(
@@ -126,8 +140,8 @@ class Body extends StatelessWidget {
               ),
               ListTile(
                 leading: CircleAvatar(),
-                title: Text("Title"),
-                subtitle: Text("email of the user"),
+                title: Text(snap!["userName"]),
+                subtitle: Text(snap!["useremail"]),
                 trailing: Icon(FontAwesomeIcons.phone),
               ),
               SizedBox(
@@ -144,12 +158,38 @@ class Body extends StatelessWidget {
                 height: 16.h,
               ),
               Text(
-                "A car is a wheeled motor vehicle used for transportation. Most definitions of cars say that they run primarily on roads, seat one to eight people, have four wheels, and mainly transport people rather than goods. Cars came into global use during the 20th century, and developed economies depend on them. Wikipedi",
+                snap!["overview"],
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey,
                 ),
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "Status",
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
+                  Text(snap!["houseStatus"]),
+                ],
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("Contact Number", style: TextStyle(fontSize: 16.sp)),
+                  Text(snap!["contactnumber"]),
+                ],
+              ),
+              SizedBox(
+                height: 8.h,
               ),
             ],
           ),

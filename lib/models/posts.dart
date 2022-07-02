@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserPost {
   final title;
+  final houseStatus;
   final houseType;
   final email;
   final contactnumber;
@@ -22,6 +23,7 @@ class UserPost {
   final likes;
   // creating the constructor here...
   UserPost({
+    required this.houseStatus,
     required this.houseType,
     required this.title,
     required this.contactnumber,
@@ -41,7 +43,9 @@ class UserPost {
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
+        "houseStatus": houseStatus,
         "houseType": houseType,
+        "postId": postId,
         "contactnumber": contactnumber,
         "useremail": email,
         "title": title,
@@ -60,6 +64,7 @@ class UserPost {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return UserPost(
       uid: snapshot['uid'],
+      houseStatus: snapshot['houseStatus'],
       houseType: snapshot['houseType'],
       email: snapshot['email'],
       contactnumber: snapshot['contactnumber'],

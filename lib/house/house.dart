@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 import 'package:houses_olx/house/components/card.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -12,6 +13,11 @@ import 'package:share_plus/share_plus.dart';
 import 'components/appbar.dart';
 
 class HouseScreen extends StatefulWidget {
+  final pageInfo;
+  const HouseScreen({
+    Key? key,
+    required this.pageInfo,
+  }) : super(key: key);
   @override
   _HouseScreenState createState() => _HouseScreenState();
 }
@@ -29,11 +35,31 @@ class _HouseScreenState extends State<HouseScreen>
 
   //   return result['filePath'];
   // }
-
+  String orderBy = "datePublished";
   @override
   void initState() {
-    // TODO: implement initState
+    checkingInfo();
     super.initState();
+  }
+
+  checkingInfo() {
+    if (widget.pageInfo == "House") {
+      setState(() {
+        orderBy = "houseType";
+      });
+    } else if (widget.pageInfo == "Villa") {
+      setState(() {
+        orderBy = widget.pageInfo;
+      });
+    } else if (widget.pageInfo == "Apartment") {
+      setState(() {
+        orderBy = widget.pageInfo;
+      });
+    } else {
+      setState(() {
+        orderBy = "datePublished";
+      });
+    }
   }
 
   Future saveAndShare(Uint8List bytes) async {
@@ -67,7 +93,7 @@ class _HouseScreenState extends State<HouseScreen>
             stream: FirebaseFirestore.instance
                 .collection("posts")
                 .orderBy(
-                  'datePublished',
+                  "houseType",
                   descending: true,
                 )
                 .snapshots(),
@@ -86,9 +112,6 @@ class _HouseScreenState extends State<HouseScreen>
               return ListView.custom(
                 childrenDelegate: SliverChildBuilderDelegate(
                   (BuildContext, index) {
-                    setState(() {
-                      loading = false;
-                    });
                     return customHouseCard(
                       snap: snapshot.data!.docs[index].data(),
                     );
@@ -101,48 +124,46 @@ class _HouseScreenState extends State<HouseScreen>
               );
             },
           ),
-          floatingActionButton: loading
-              ? Container()
-              : SpeedDial(
-                  animatedIcon: AnimatedIcons.menu_close,
-                  backgroundColor: Colors.green[900],
-                  overlayColor: Colors.black.withOpacity(0.04),
-                  spacing: 4.h,
-                  spaceBetweenChildren: 12.h,
-                  openCloseDial: isDialOpen,
-                  children: [
-                    SpeedDialChild(
-                      child: Icon(Icons.share),
-                      label: "Share",
-                      backgroundColor: Colors.green[300],
-                      onTap: () {},
-                    ),
-                    SpeedDialChild(
-                      child: Icon(Icons.star),
-                      label: "Rate App",
-                      backgroundColor: Colors.green[300],
-                      onTap: () {},
-                    ),
-                    SpeedDialChild(
-                      child: Icon(Icons.screenshot),
-                      label: "Take Snap",
-                      backgroundColor: Colors.green[300],
-                      onTap: () async {
-                        final image = await _controller.capture();
+          floatingActionButton: SpeedDial(
+            animatedIcon: AnimatedIcons.menu_close,
+            backgroundColor: Colors.green[900],
+            overlayColor: Colors.black.withOpacity(0.04),
+            spacing: 4.h,
+            spaceBetweenChildren: 12.h,
+            openCloseDial: isDialOpen,
+            children: [
+              SpeedDialChild(
+                child: Icon(Icons.share),
+                label: "Share",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.star),
+                label: "Rate App",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.screenshot),
+                label: "Take Snap",
+                backgroundColor: Colors.green[300],
+                onTap: () async {
+                  final image = await _controller.capture();
 
-                        saveAndShare(image!);
-                        // final result = await saveImage(image);
-                        // print(result);
-                      },
-                    ),
-                    SpeedDialChild(
-                      child: Icon(Icons.add),
-                      label: "Add post",
-                      backgroundColor: Colors.green[300],
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+                  saveAndShare(image!);
+                  // final result = await saveImage(image);
+                  // print(result);
+                },
+              ),
+              SpeedDialChild(
+                child: Icon(Icons.add),
+                label: "Add post",
+                backgroundColor: Colors.green[300],
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );

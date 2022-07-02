@@ -92,8 +92,13 @@ class _BodyState extends State<Body> {
                           iconData: Icons.house,
                           text: "House",
                           press: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HouseScreen()));
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => HouseScreen(
+                                  pageInfo: "House",
+                                ),
+                              ),
+                            );
                           },
                         ),
                         SizedBox(
@@ -102,7 +107,12 @@ class _BodyState extends State<Body> {
                         menuButton(
                           iconData: Icons.villa,
                           text: "Villa",
-                          press: () {},
+                          press: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HouseScreen(
+                                      pageInfo: "Villa",
+                                    )));
+                          },
                         ),
                         SizedBox(
                           width: 7.w,
@@ -110,7 +120,15 @@ class _BodyState extends State<Body> {
                         menuButton(
                           iconData: Icons.apartment,
                           text: "Apartment",
-                          press: () {},
+                          press: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => HouseScreen(
+                                  pageInfo: "Apartment",
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

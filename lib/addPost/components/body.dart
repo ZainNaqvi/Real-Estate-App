@@ -11,7 +11,6 @@ import 'package:houses_olx/widget/validator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../db/authentication/firebase_auth_methods.dart';
 import '../../provider/userProviders.dart';
 
 class Body extends StatefulWidget {
@@ -39,6 +38,7 @@ class _BodyState extends State<Body> {
   bool _isloading = false;
 // for adding post
   String _houseType = "house";
+  String _houseStatus = "For Sale";
   void addPost({
     required final uid,
     required final userName,
@@ -50,6 +50,7 @@ class _BodyState extends State<Body> {
     });
     try {
       String res = await FirestoreMethods().uploadPost(
+        houseStatus: _houseStatus,
         houseType: _houseType,
         file: _file!,
         title: _userTitleController.text,
@@ -227,6 +228,45 @@ class _BodyState extends State<Body> {
                       width: 3.w,
                     ),
                     Text("Apartment"),
+                  ],
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      autofocus: true,
+                      value: "For Sale",
+                      groupValue: _houseStatus,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _houseStatus = value!;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Text(
+                      "For Sale",
+                    ),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    Radio(
+                      value: "Rent",
+                      groupValue: _houseStatus,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _houseStatus = value!;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 3.w,
+                    ),
+                    Text("Rent"),
                   ],
                 ),
                 SizedBox(

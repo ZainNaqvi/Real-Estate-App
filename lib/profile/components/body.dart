@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:houses_olx/models/users.dart';
+import 'package:houses_olx/signin/signin.dart';
 import 'package:provider/provider.dart';
 
+import '../../db/authentication/firebase_auth_methods.dart';
 import '../../provider/userProviders.dart';
 
 class Body extends StatefulWidget {
@@ -139,7 +141,14 @@ class _BodyState extends State<Body> {
               ),
               Divider(),
               customListTIle(
-                press: () {},
+                press: () {
+                  FirebaseAuthMethods().signOut();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Signin(),
+                    ),
+                  );
+                },
                 leading: Icons.logout,
                 text: "Logout",
                 trailing: null,

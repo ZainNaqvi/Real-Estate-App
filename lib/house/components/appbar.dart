@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/feed/feedScreen.dart';
 
 AppBar customAppbar(BuildContext context) {
   return AppBar(
@@ -8,7 +9,11 @@ AppBar customAppbar(BuildContext context) {
     backgroundColor: Colors.white,
     leading: InkWell(
       onTap: () {
-        Navigator.of(context).pop();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => FeedScreen(),
+          ),
+        );
       },
       child: Icon(Icons.arrow_back_ios),
     ),

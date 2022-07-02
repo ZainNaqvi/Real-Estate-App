@@ -10,6 +10,7 @@ class FirestoreMethods {
   // for uploading the image
   Future<String> uploadPost({
     required Uint8List file,
+    required String houseStatus,
     required String houseType,
     required final uid,
     required final contactNumber,
@@ -33,6 +34,7 @@ class FirestoreMethods {
 
       String postId = const Uuid().v1();
       UserPost userPost = UserPost(
+        houseStatus: houseStatus,
         houseType: houseType,
         title: title,
         uid: uid,
@@ -56,5 +58,30 @@ class FirestoreMethods {
       res = err.toString();
     }
     return res;
+  }
+
+  // for liking the post
+  Future<void> likePost({
+    required String postId,
+    required String uid,
+    required List like,
+  }) async {
+    try {
+      if (like.contains(uid)) {
+        await _firebaseFirestore.collection("posts").doc(postId).update(
+          {
+            "likes": FieldValue.arrayRemove([uid]),
+          },
+        );
+      } else {
+        await _firebaseFirestore.collection("posts").doc(postId).update(
+          {
+            "likes": FieldValue.arrayUnion([uid]),
+          },
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -4,7 +4,7 @@ import 'package:houses_olx/widget/bottomnavigation/bottom.dart';
 import 'package:houses_olx/widget/bottomnavigation/header.dart';
 import 'package:houses_olx/widget/bottomnavigation/paidstats.dart';
 
-Container bottomapp() {
+Container bottomapp({required final snap}) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
     height: 100.h,
@@ -26,7 +26,7 @@ Container bottomapp() {
       Row(
         children: [
           // in column
-          paidstats(),
+          paidstats(snap),
           Spacer(),
           bottom(),
         ],

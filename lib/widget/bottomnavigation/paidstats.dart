@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Column paidstats() {
+Column paidstats(snap) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -12,7 +12,7 @@ Column paidstats() {
         height: 5,
       ),
       Text(
-        "\$337.15:",
+        "${snap!['price']}",
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
       ),
     ],

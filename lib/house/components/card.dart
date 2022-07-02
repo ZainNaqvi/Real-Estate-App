@@ -88,7 +88,7 @@ class customHouseCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                                 border: Border.all(color: Colors.green)),
                             child: Text(
-                              'Apartment',
+                              snap!['houseType'],
                               style: TextStyle(color: Colors.green),
                             ),
                           ),
@@ -121,7 +121,7 @@ class customHouseCard extends StatelessWidget {
                       height: 8.h,
                     ),
                     Text(
-                      "Owent Apartment",
+                      snap!["title"],
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
