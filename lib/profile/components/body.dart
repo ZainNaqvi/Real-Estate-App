@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:houses_olx/edit/editProfile.dart';
 import 'package:houses_olx/models/users.dart';
 import 'package:houses_olx/signin/signin.dart';
 import 'package:provider/provider.dart';
@@ -120,7 +121,13 @@ class _BodyState extends State<Body> {
                 height: 24.h,
               ),
               customListTIle(
-                press: () {},
+                press: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditProfile(),
+                    ),
+                  );
+                },
                 leading: Icons.person,
                 text: "Edit Profile",
                 trailing: Icons.arrow_forward_ios_outlined,

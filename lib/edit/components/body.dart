@@ -13,23 +13,16 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  TextEditingController _userNewPasswordController = TextEditingController();
-  TextEditingController _userCPasswordController = TextEditingController();
-  bool isObscure = true;
-  bool isPObscure = true;
-  bool isChecked = true;
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _userNewPasswordController.dispose();
-    _userCPasswordController.dispose();
-  }
+  TextEditingController _userName = TextEditingController();
+  TextEditingController _userPhone = TextEditingController();
+  TextEditingController _userAddress = TextEditingController();
+  TextEditingController _userGender = TextEditingController();
+  TextEditingController _userAge = TextEditingController();
+  TextEditingController _userCountry = TextEditingController();
 
-  submitForm() {
-    print(_userNewPasswordController.text);
-    print(_userCPasswordController.text);
-  }
+  bool isChecked = false;
+
+  submitForm() {}
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +34,7 @@ class _BodyState extends State<Body> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Create a new password",
+                "Change Your Profile ",
                 style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.w600,
@@ -56,17 +49,9 @@ class _BodyState extends State<Body> {
                 child: Row(
                   children: [
                     Text(
-                      "New Password",
+                      "Name",
                       style: TextStyle(
                         color: Colors.grey[800],
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                    Text(
-                      "*",
-                      style: TextStyle(
-                        color: Colors.red,
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp,
                       ),
@@ -78,79 +63,106 @@ class _BodyState extends State<Body> {
                 height: 10.h,
               ),
               TextFormField(
-                obscureText: isPObscure,
-                controller: _userNewPasswordController,
+                controller: _userName,
                 validator: passwordValidator,
-                keyboardType: TextInputType.visiblePassword,
+                keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
+                initialValue: "Zain Haider",
                 decoration: InputDecoration(
-                  hintText: "New Password",
+                  hintText: "New Name",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
                   enabledBorder: customOutlineBorder(),
                   focusedBorder: customOutlineBorder(),
                   border: customOutlineBorder(),
-                  suffixIcon: suffixicon(
-                    press: () {
-                      setState(() {
-                        isPObscure = !isPObscure;
-                      });
-                    },
-                    icon: Icons.remove_red_eye,
-                  ),
                 ),
               ),
               SizedBox(
                 height: 24.h,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                child: Row(
-                  children: [
-                    Text(
-                      "Confirm Password",
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                    Text(
-                      "*",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
               TextFormField(
-                controller: _userCPasswordController,
-                validator: passwordValidator,
-                keyboardType: TextInputType.visiblePassword,
+                controller: _userAddress,
+                validator: requiredField,
+                keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                obscureText: isObscure,
+                initialValue: "ADdress ",
                 decoration: InputDecoration(
+                  hintText: "Address",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
-                  hintText: "Confirm New Password",
                   enabledBorder: customOutlineBorder(),
-                  suffixIcon: suffixicon(
-                      press: () {
-                        setState(() {
-                          isObscure = !isObscure;
-                        });
-                      },
-                      icon: Icons.remove_red_eye),
                   focusedBorder: customOutlineBorder(),
                   border: customOutlineBorder(),
                 ),
               ),
               SizedBox(
-                height: 16.h,
+                height: 24.h,
+              ),
+              TextFormField(
+                controller: _userCountry,
+                validator: requiredField,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+                initialValue: "country ",
+                decoration: InputDecoration(
+                  hintText: "apsdfads",
+                  contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                  enabledBorder: customOutlineBorder(),
+                  focusedBorder: customOutlineBorder(),
+                  border: customOutlineBorder(),
+                ),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              TextFormField(
+                controller: _userAge,
+                validator: requiredField,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+                initialValue: "age ",
+                decoration: InputDecoration(
+                  hintText: "age",
+                  contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                  enabledBorder: customOutlineBorder(),
+                  focusedBorder: customOutlineBorder(),
+                  border: customOutlineBorder(),
+                ),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              TextFormField(
+                controller: _userGender,
+                validator: requiredField,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+                initialValue: "gender ",
+                decoration: InputDecoration(
+                  hintText: "gender",
+                  contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                  enabledBorder: customOutlineBorder(),
+                  focusedBorder: customOutlineBorder(),
+                  border: customOutlineBorder(),
+                ),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              TextFormField(
+                controller: _userPhone,
+                validator: requiredField,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+                initialValue: "6546456 ",
+                decoration: InputDecoration(
+                  hintText: "54654646",
+                  contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
+                  enabledBorder: customOutlineBorder(),
+                  focusedBorder: customOutlineBorder(),
+                  border: customOutlineBorder(),
+                ),
+              ),
+              SizedBox(
+                height: 24.h,
               ),
               Row(
                 children: [

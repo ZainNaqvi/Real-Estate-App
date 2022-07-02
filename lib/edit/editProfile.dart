@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:houses_olx/resetPassword/components/body.dart';
+import 'package:houses_olx/edit/components/body.dart';
 
-class ResetPassword extends StatelessWidget {
+class EditProfile extends StatelessWidget {
   static String routeName = "/resetPassword";
 
   @override
@@ -13,7 +13,7 @@ class ResetPassword extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Reset Password',
+          'Edit Profile',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w600,

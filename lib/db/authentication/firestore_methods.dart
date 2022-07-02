@@ -96,4 +96,12 @@ class FirestoreMethods {
     }
     return res;
   }
+
+  // editin
+  Future updateUserData({required String name, required String uid}) async {
+    // this is the function that has to edit the username
+    return await _firebaseFirestore.collection('users').doc(uid).set({
+      'first': name,
+    });
+  }
 }

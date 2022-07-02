@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constrains.dart';
-import '../../resetPassword/ressetPassword.dart';
 import '../../widget/default.dart';
 import 'otpstats.dart';
 
@@ -132,8 +131,7 @@ class _formState extends State<form> {
                     decoration: otpInputDecoration(),
                     onChanged: (value) {
                       pin4FocusNode.unfocus();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ResetPassword()));
+                    
                     },
                   ),
                 ),
