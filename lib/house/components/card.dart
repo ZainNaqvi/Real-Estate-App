@@ -2,7 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:houses_olx/db/authentication/firestore_methods.dart';
 import 'package:houses_olx/postDetailedPage/detail.dart';
+import 'package:houses_olx/provider/userProviders.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/users.dart';
 
 class customHouseCard extends StatelessWidget {
   final snap;
@@ -13,6 +19,8 @@ class customHouseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserCreaditials userCreaditials =
+        Provider.of<UserProviders>(context).getUser;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 8.w,
@@ -154,10 +162,15 @@ class customHouseCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Icon(
-                          Icons.favorite_outline,
-                          color: Colors.green[900],
-                        ),
+                        snap!['uid'] == userCreaditials.uid
+                            ? InkWell(
+                                onTap: () {
+                                  FirestoreMethods()
+                                      .deletePost(postId: snap!['postId']);
+                                },
+                                child: Icon(Icons.delete),
+                              )
+                            : Icon(Icons.favorite_outline_outlined),
                       ],
                     ),
                   ],

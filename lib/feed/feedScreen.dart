@@ -98,17 +98,17 @@ class _FeedScreenState extends State<FeedScreen> {
                     : Color(0xFFB6B6B6B6),
               ),
             ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  selectedTab(2);
-                });
-              },
-              icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
-                  color: _page == 2
-                      ? Colors.green.withOpacity(0.5)
-                      : Color(0xFFB6B6B6B6)),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     setState(() {
+            //       selectedTab(2);
+            //     });
+            //   },
+            //   icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
+            //       color: _page == 2
+            //           ? Colors.green.withOpacity(0.5)
+            //           : Color(0xFFB6B6B6B6)),
+            // ),
             IconButton(
               onPressed: () {
                 setState(() {
