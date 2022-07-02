@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/db/authentication/firebase_auth_methods.dart';
@@ -188,7 +189,7 @@ class _FormFieldsState extends State<FormFields> {
           ),
           isLoading
               ? Center(
-                  child: CircularProgressIndicator(color: Colors.green[900]),
+                  child: CupertinoActivityIndicator(),
                 )
               : defaultButton(
                   text: "Sign in",

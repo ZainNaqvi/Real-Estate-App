@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/db/authentication/firestore_methods.dart';
@@ -329,9 +330,7 @@ class _BodyState extends State<Body> {
                   height: 16.h,
                 ),
                 _isloading
-                    ? CircularProgressIndicator(
-                        color: Colors.green,
-                      )
+                    ? CupertinoActivityIndicator()
                     : defaultButton(
                         text: "Send",
                         press: () async {

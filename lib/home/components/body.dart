@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/home/components/header.dart';
@@ -34,7 +35,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: UserProviders().isLoading
-          ? CircularProgressIndicator()
+          ? CupertinoActivityIndicator()
           : Padding(
               padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 16.h),
               child: SingleChildScrollView(

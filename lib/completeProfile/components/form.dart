@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -343,7 +344,7 @@ class _formState extends State<form> {
           ),
           isLoading
               ? Center(
-                  child: CircularProgressIndicator(color: Colors.green[900]),
+                  child: CupertinoActivityIndicator(),
                 )
               : defaultButton(
                   text: "Save",

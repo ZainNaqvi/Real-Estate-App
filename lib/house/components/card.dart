@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/postDetailedPage/detail.dart';
 
 class customHouseCard extends StatelessWidget {
   final snap;
@@ -25,9 +27,8 @@ class customHouseCard extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: snap!["postURL"] == null
                   ? Center(
-                      child: CircularProgressIndicator(
-                      color: Colors.black,
-                    ))
+                      child: CupertinoActivityIndicator(),
+                    )
                   : Container(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       height: 170.h,
@@ -67,7 +68,13 @@ class customHouseCard extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => PostDetailedPage(snap: snap),
+                  ),
+                );
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Column(

@@ -1,18 +1,14 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:houses_olx/house/components/body.dart';
 import 'package:houses_olx/house/components/card.dart';
-import 'package:houses_olx/models/users.dart';
-import 'package:houses_olx/widget/customCard.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import '../provider/userProviders.dart';
 import 'components/appbar.dart';
 
 class HouseScreen extends StatefulWidget {
@@ -65,7 +61,7 @@ class _HouseScreenState extends State<HouseScreen>
         controller: _controller,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: customAppbar(),
+          appBar: customAppbar(context),
           body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("posts")
@@ -78,17 +74,22 @@ class _HouseScreenState extends State<HouseScreen>
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.green,
-                  ),
+                  child: CupertinoActivityIndicator(),
                 );
               }
 
-              return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => customHouseCard(
-                  snap: snapshot.data!.docs[index].data(),
+              return ListView.custom(
+                childrenDelegate: SliverChildBuilderDelegate(
+                  (BuildContext, index) {
+                    return customHouseCard(
+                      snap: snapshot.data!.docs[index].data(),
+                    );
+                  },
+                  childCount: snapshot.data!.docs.length,
                 ),
+                shrinkWrap: true,
+                padding: EdgeInsets.all(5),
+                scrollDirection: Axis.vertical,
               );
             },
           ),

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AppBar customAppbar() {
+AppBar customAppbar(BuildContext context) {
   return AppBar(
     elevation: 0,
     iconTheme: IconThemeData(color: Colors.green),
     backgroundColor: Colors.white,
-    leading: Icon(Icons.arrow_back_ios),
+    leading: InkWell(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Icon(Icons.arrow_back_ios),
+    ),
     title: Text(
       "House",
       style: TextStyle(

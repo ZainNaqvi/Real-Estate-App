@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/completeProfile/completeProfile.dart';
@@ -161,9 +162,7 @@ class _FormFieldsState extends State<FormFields> {
           ),
           isLoading
               ? Center(
-                  child: CircularProgressIndicator(
-                    color: Color(0xff023020),
-                  ),
+                  child: CupertinoActivityIndicator(),
                 )
               : AnimatedContainer(
                   duration: Duration(milliseconds: 600),
