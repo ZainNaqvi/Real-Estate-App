@@ -53,9 +53,35 @@ class _BodyState extends State<Body> {
               ),
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(userCreaditials.profilePic),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage:
+                            NetworkImage(userCreaditials.profilePic),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: -5.w,
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 44.w,
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.black38,
+                              ),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     width: 24.w,
