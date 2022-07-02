@@ -13,7 +13,8 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  TextEditingController _userName = TextEditingController();
+  TextEditingController _userName = TextEditingController(text: "ZAin Haider");
+
   TextEditingController _userPhone = TextEditingController();
   TextEditingController _userAddress = TextEditingController();
   TextEditingController _userGender = TextEditingController();
@@ -44,32 +45,15 @@ class _BodyState extends State<Body> {
               SizedBox(
                 height: 24.h,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-                child: Row(
-                  children: [
-                    Text(
-                      "Name",
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
               TextFormField(
+                autocorrect: true,
+                autofocus: true,
                 controller: _userName,
                 validator: passwordValidator,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "Zain Haider",
                 decoration: InputDecoration(
-                  hintText: "New Name",
+                  hintText: "Zain Haider Naqvi",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
                   enabledBorder: customOutlineBorder(),
                   focusedBorder: customOutlineBorder(),
@@ -84,7 +68,6 @@ class _BodyState extends State<Body> {
                 validator: requiredField,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "ADdress ",
                 decoration: InputDecoration(
                   hintText: "Address",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
@@ -101,7 +84,6 @@ class _BodyState extends State<Body> {
                 validator: requiredField,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "country ",
                 decoration: InputDecoration(
                   hintText: "apsdfads",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
@@ -118,7 +100,6 @@ class _BodyState extends State<Body> {
                 validator: requiredField,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "age ",
                 decoration: InputDecoration(
                   hintText: "age",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
@@ -135,7 +116,6 @@ class _BodyState extends State<Body> {
                 validator: requiredField,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "gender ",
                 decoration: InputDecoration(
                   hintText: "gender",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
@@ -152,7 +132,6 @@ class _BodyState extends State<Body> {
                 validator: requiredField,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                initialValue: "6546456 ",
                 decoration: InputDecoration(
                   hintText: "54654646",
                   contentPadding: EdgeInsets.fromLTRB(20.w, 0, 0, 0),
