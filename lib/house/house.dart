@@ -74,7 +74,7 @@ class _HouseScreenState extends State<HouseScreen>
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: CupertinoActivityIndicator(),
+                  child: CupertinoActivityIndicator(radius: 50),
                 );
               }
 
