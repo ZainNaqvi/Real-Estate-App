@@ -33,7 +33,7 @@ Row header() {
             children: [
               Icon(
                 Icons.location_on,
-                color: Colors.blue,
+                color: Colors.green,
               ),
               SizedBox(
                 width: 16.w,
@@ -54,13 +54,13 @@ Row header() {
           width: 44.w,
           height: 44.h,
           decoration: BoxDecoration(
-              color: Colors.blue.withOpacity(
+              color: Colors.green.withOpacity(
                 0.04,
               ),
               borderRadius: BorderRadius.circular(10.r)),
           child: Icon(
             Icons.notifications,
-            color: Colors.blue,
+            color: Colors.green,
           )),
     ],
   );

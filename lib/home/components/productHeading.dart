@@ -19,7 +19,10 @@ Row productHeading({
       ),
       TextButton(
         onPressed: press,
-        child: Text(text),
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.green),
+        ),
       ),
     ],
   );

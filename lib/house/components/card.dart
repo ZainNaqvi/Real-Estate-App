@@ -23,19 +23,24 @@ class customHouseCard extends StatelessWidget {
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Container(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                height: 170.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      snap!["postURL"],
+              child: snap!["postURL"] == null
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ))
+                  : Container(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      height: 170.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            snap!["postURL"],
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.r),

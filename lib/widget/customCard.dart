@@ -16,7 +16,7 @@ class customCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            width: 280.w,
+            width: 180.w,
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -36,7 +36,7 @@ class customCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 280.w,
+            width: 182.w,
             child: OutlinedButton(
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(
@@ -58,35 +58,39 @@ class customCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 0.0),
                           child: Container(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(4.0.r),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.r),
-                                border: Border.all(color: Colors.blueAccent)),
-                            child: Text('Apartment'),
+                                border: Border.all(color: Colors.green)),
+                            child: Text(
+                              'Apartment',
+                              style: TextStyle(color: Colors.green[900]),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          width: 16.w,
-                        ),
-                        Text(
-                          "\$1,800/ ",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        Text(
-                          " month",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "\$1,800/",
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                            Text(
+                              "month",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -98,7 +102,7 @@ class customCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
-                        fontSize: 24.sp,
+                        fontSize: 16.sp,
                       ),
                     ),
                     SizedBox(
@@ -110,9 +114,12 @@ class customCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.location_on),
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.green,
+                            ),
                             SizedBox(
-                              width: 16.w,
+                              width: 8.w,
                             ),
                             Text(
                               "Pakistan , wah cantt",
@@ -124,7 +131,10 @@ class customCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Icon(Icons.favorite_outline),
+                        Icon(
+                          Icons.favorite_outline,
+                          color: Colors.green,
+                        ),
                       ],
                     ),
                   ],

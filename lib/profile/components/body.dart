@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:houses_olx/models/users.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/userProviders.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -12,100 +16,154 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    UserCreaditials userCreaditials =
+        Provider.of<UserProviders>(context).getUser;
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
+          child: Column(
             children: [
-              Text(
-                "Settings",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 26.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Container(
-                width: 30.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.r),
-                  color: Colors.greenAccent,
-                ),
-                child: Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 24.h,
-          ),
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 50,
-              ),
-              SizedBox(
-                width: 24.w,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Zain Haider Naqvi",
+                    "Settings",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.sp,
-                      fontFamily: "arial",
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: 8.h,
+                  Container(
+                    width: 34.w,
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4.r),
+                        color: Colors.green.withOpacity(0.04)),
+                    child: Icon(
+                      Icons.settings,
+                      color: Colors.green,
+                    ),
                   ),
-                  Text("The Fluter Devolper"),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  Text("Zain Haider"),
                 ],
               ),
+              SizedBox(
+                height: 24.h,
+              ),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(userCreaditials.profilePic),
+                  ),
+                  SizedBox(
+                    width: 24.w,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        userCreaditials.fullname,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.sp,
+                          fontFamily: "arial",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Text(userCreaditials.email),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Text(userCreaditials.country),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              Divider(),
+              SizedBox(
+                height: 24.h,
+              ),
+              customListTIle(
+                press: () {},
+                leading: Icons.person,
+                text: "Edit Profile",
+                trailing: Icons.arrow_forward_ios_outlined,
+              ),
+              Divider(),
+              customListTIle(
+                press: () {},
+                leading: Icons.remove_red_eye,
+                text: "Appearance",
+                trailing: Icons.arrow_forward_ios_outlined,
+              ),
+              Divider(),
+              customListTIle(
+                press: () {},
+                leading: Icons.person,
+                text: "Invite Friend",
+                trailing: Icons.arrow_forward_ios_outlined,
+              ),
+              Divider(),
+              customListTIle(
+                press: () {},
+                leading: Icons.logout,
+                text: "Logout",
+                trailing: null,
+              ),
+              Divider(),
             ],
           ),
-          SizedBox(
-            height: 16.h,
-          ),
-          Divider(),
-          SizedBox(
-            height: 24.h,
-          ),
-          ListTile(
-            leading: Container(
-              width: 54.w,
-              height: 54.h,
-              decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(Icons.person),
+        ),
+      ),
+    );
+  }
+
+  Widget customListTIle({
+    required IconData leading,
+    required String text,
+    required IconData? trailing,
+    required VoidCallback press,
+  }) {
+    return InkWell(
+      onTap: press,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 14.h),
+        child: ListTile(
+          leading: Container(
+            width: 54.w,
+            height: 54.h,
+            decoration: BoxDecoration(
+              color: text == "Logout"
+                  ? Colors.red[200]
+                  : Colors.green.withOpacity(0.04),
+              shape: BoxShape.circle,
             ),
-            title: Text(
-              "Edit Profile",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.sp),
-            ),
-            trailing: Icon(
-              Icons.arrow_forward_ios_outlined,
-              color: Colors.green,
+            child: Icon(
+              leading,
+              color: text == "Logout" ? Colors.white : Colors.green,
             ),
           ),
-        ],
+          title: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 16.sp,
+            ),
+          ),
+          trailing: Icon(
+            trailing,
+            color: Colors.green,
+          ),
+        ),
       ),
     );
   }
