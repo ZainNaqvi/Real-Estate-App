@@ -31,7 +31,7 @@ class _BodyState extends State<Body> {
       "title": "Find your Beloved Family's Dream\nHouse with us",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/splash2.png",
+      "imageURL": "assets/images/realS.jpg",
     },
   ];
 
@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
               height: 40.h,
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
@@ -62,7 +62,7 @@ class _BodyState extends State<Body> {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Column(
                 children: [
                   Spacer(),
@@ -77,20 +77,22 @@ class _BodyState extends State<Body> {
                   Spacer(
                     flex: 3,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(Signin.routeName);
-                    },
-                    child: Text(
-                      "Skip",
-                      style: TextStyle(
-                        color: Color(0xff023020),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ),
+                  currentIndex == 2
+                      ? Container()
+                      : TextButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed(Signin.routeName);
+                          },
+                          child: Text(
+                            "Skip",
+                            style: TextStyle(
+                              color: Color(0xff023020),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 10.h,
                   ),
