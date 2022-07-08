@@ -19,19 +19,19 @@ class _BodyState extends State<Body> {
       "title": "The Biggest Real Estate App\nof the Century",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/realEstate.jpg",
+      "imageURL": "assets/images/Group.png",
     },
     {
       "title": "We Focus on Providing a Comfortable\nPlace for You",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/realS.jpg",
+      "imageURL": "assets/images/Frame.png",
     },
     {
       "title": "Find your Beloved Family's Dream\nHouse with us",
       "desc":
           "the e-Commerce industry is witnessing the most significant growth of mobile solutions development.",
-      "imageURL": "assets/images/realS.jpg",
+      "imageURL": "assets/images/Frame2.png",
     },
   ];
 
@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
               height: 40.h,
             ),
             Expanded(
-              flex: 4,
+              flex: 3,
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
@@ -104,7 +104,7 @@ class _BodyState extends State<Body> {
                               Navigator.of(context)
                                   .pushReplacementNamed(Signin.routeName);
                             },
-                            text: "Continue")
+                            text: "Log in")
                         : SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -116,7 +116,7 @@ class _BodyState extends State<Body> {
                               ),
                               onPressed: null,
                               child: Text(
-                                "Continue",
+                                "Log in",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

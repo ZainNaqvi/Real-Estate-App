@@ -15,18 +15,22 @@ class splashStats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 34.h,
+        ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(vertical: 24.0.h),
           child: Image.asset(
             imageURL,
             width: double.infinity,
             height: 200.h,
           ),
         ),
-        Spacer(),
+        SizedBox(
+          height: 8.h,
+        ),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.r),
               topRight: Radius.circular(30.r),
@@ -38,7 +42,7 @@ class splashStats extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff023020),
                 ),
@@ -50,7 +54,7 @@ class splashStats extends StatelessWidget {
                 desc,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 18.sp,
                   color: Colors.grey,
                 ),
               ),

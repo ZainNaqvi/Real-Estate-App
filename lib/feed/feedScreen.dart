@@ -54,12 +54,12 @@ class _FeedScreenState extends State<FeedScreen> {
         onPageChanged: onPageChanged,
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 24),
+        padding: EdgeInsets.symmetric(vertical: 12.h),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30.r),
+            topRight: Radius.circular(30.r),
           ),
           boxShadow: [
             BoxShadow(
