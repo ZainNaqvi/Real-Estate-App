@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/feed/feedScreen.dart';
 
-AppBar customAppbar(BuildContext context) {
+AppBar customAppbar(BuildContext context, String pageinfo) {
   return AppBar(
     elevation: 0,
     iconTheme: IconThemeData(color: Colors.green),
@@ -18,7 +18,7 @@ AppBar customAppbar(BuildContext context) {
       child: Icon(Icons.arrow_back_ios),
     ),
     title: Text(
-      "House",
+      pageinfo,
       style: TextStyle(
         color: Colors.black,
         fontSize: 18.sp,

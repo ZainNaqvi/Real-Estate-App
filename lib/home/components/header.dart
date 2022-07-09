@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Row header(final _currrentAddress) {
+Row header() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -39,7 +39,7 @@ Row header(final _currrentAddress) {
                 width: 16.w,
               ),
               Text(
-                "${_currrentAddress}",
+                "Wah cantt , Pakistan",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18.sp,

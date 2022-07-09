@@ -35,7 +35,7 @@ class _HouseScreenState extends State<HouseScreen>
 
   //   return result['filePath'];
   // }
-  String orderBy = "datePublished";
+  String? orderBy;
   @override
   void initState() {
     checkingInfo();
@@ -45,19 +45,15 @@ class _HouseScreenState extends State<HouseScreen>
   checkingInfo() {
     if (widget.pageInfo == "House") {
       setState(() {
-        orderBy = "houseType";
+        orderBy = "house";
       });
     } else if (widget.pageInfo == "Villa") {
       setState(() {
-        orderBy = widget.pageInfo;
+        orderBy = "villa";
       });
     } else if (widget.pageInfo == "Apartment") {
       setState(() {
-        orderBy = widget.pageInfo;
-      });
-    } else {
-      setState(() {
-        orderBy = "datePublished";
+        orderBy = "apartment";
       });
     }
   }
@@ -88,14 +84,15 @@ class _HouseScreenState extends State<HouseScreen>
         controller: _controller,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: customAppbar(context),
+          appBar: customAppbar(context, widget.pageInfo),
           body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("posts")
-                .orderBy(
-                  "houseType",
-                  descending: true,
-                )
+                // .orderBy(
+                //   "datePublished",
+                //   descending: true,
+                // )
+                .where('houseType', isEqualTo: orderBy)
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -109,19 +106,21 @@ class _HouseScreenState extends State<HouseScreen>
                 );
               }
 
-              return ListView.custom(
-                childrenDelegate: SliverChildBuilderDelegate(
-                  (BuildContext, index) {
-                    return customHouseCard(
-                      snap: snapshot.data!.docs[index].data(),
+              return snapshot.data!.docs.length == 0
+                  ? Center(child: Text("No data is to display."))
+                  : ListView.custom(
+                      childrenDelegate: SliverChildBuilderDelegate(
+                        (BuildContext, index) {
+                          return customHouseCard(
+                            snap: snapshot.data!.docs[index].data(),
+                          );
+                        },
+                        childCount: snapshot.data!.docs.length,
+                      ),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(5),
+                      scrollDirection: Axis.vertical,
                     );
-                  },
-                  childCount: snapshot.data!.docs.length,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.all(5),
-                scrollDirection: Axis.vertical,
-              );
             },
           ),
           floatingActionButton: SpeedDial(
