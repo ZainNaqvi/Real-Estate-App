@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:houses_olx/home/components/header.dart';
 import 'package:houses_olx/home/components/menuHouses.dart';
 import 'package:houses_olx/home/components/productHeading.dart';
 import 'package:houses_olx/house/house.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../provider/userProviders.dart';
@@ -21,7 +23,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     addData();
-    // TODO: implement initState
+    _getCurrentLocation();
     super.initState();
   }
 
@@ -31,17 +33,52 @@ class _BodyState extends State<Body> {
     await userProviders.refreshUser();
   }
 
+  Position? _currentPosition;
+  String? _currentAddress;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition!.latitude, _currentPosition!.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        _currentAddress =
+            "${place.locality} ${place.postalCode}, ${place.country}";
+      });
+      print(_currentAddress);
+      print(_currentPosition);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: UserProviders().isLoading
-          ? CupertinoActivityIndicator()
+          ? Center(child: CupertinoActivityIndicator())
           : Padding(
               padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 16.h),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    header(),
+                    header(_currentAddress!),
                     SizedBox(
                       height: 16.h,
                     ),
