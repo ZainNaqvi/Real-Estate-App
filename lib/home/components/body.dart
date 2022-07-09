@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,7 +69,12 @@ class _BodyState extends State<Body> {
   //     print(e);
   //   }
   // }
-
+  List images = [
+    "https://source.unsplash.com/user/c_v_r",
+    "https://picsum.photos/200/300",
+    "https://picsum.photos/200",
+    "https://picsum.photos/200/300?random=2",
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -169,6 +176,69 @@ class _BodyState extends State<Body> {
                           },
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    CarouselSlider(
+                      options: CarouselOptions(
+                          height: 100,
+                          aspectRatio: 16 / 9,
+                          viewportFraction: 0.8,
+                          initialPage: 0,
+                          enableInfiniteScroll: true,
+                          reverse: false,
+                          autoPlay: true,
+                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 800),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal),
+                      items: [
+                        1,
+                        2,
+                        3,
+                      ].map((i) {
+                        return Builder(builder: (BuildContext context) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Stack(children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.teal,
+                                      borderRadius:
+                                          BorderRadius.circular(10.r)),
+                                  width: MediaQuery.of(context).size.width,
+                                  child: CachedNetworkImage(
+                                    width: dou,
+                                    fit: BoxFit.contain,
+                                    imageUrl: images[i],
+                                    placeholder: (context, url) =>
+                                        CupertinoActivityIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 10,
+                                  left: 10,
+                                  child: Text(
+                                    "Adds ${i}",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ]));
+                        });
+                      }).toList(),
                     ),
                     SizedBox(
                       height: 16.h,
