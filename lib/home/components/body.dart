@@ -69,11 +69,11 @@ class _BodyState extends State<Body> {
   //     print(e);
   //   }
   // }
-  List images = [
-    "https://source.unsplash.com/user/c_v_r",
-    "https://picsum.photos/200/300",
-    "https://picsum.photos/200",
-    "https://picsum.photos/200/300?random=2",
+  List text = [
+    "Find Real Estate Websites Canada\nat Shopwebly, the Website to Compare Prices!\nFind and Compare Real Estate\nWebsites Canada Online. Save Now\nat Shopwebly! Easy Acces ",
+    "Search Quality Answers Now. Get The Best\nResult With ZapMeta About Quality\nAnswers Now. Find More Vancouver Real Estate Agent.\nZapMeta Offers The Overview from 6 E",
+    "Need some inspiration for your next\nreal estate advertising campaign? Check\nout these 42 great examples of real estate ads\non Facebook.",
+    "Real estate ads are used to promote\nrealtors and real estate companies.\nThey can come in many forms (e.g., text, image,\nand video",
   ];
   @override
   Widget build(BuildContext context) {
@@ -177,69 +177,7 @@ class _BodyState extends State<Body> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    CarouselSlider(
-                      options: CarouselOptions(
-                          height: 100,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          reverse: false,
-                          autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enlargeCenterPage: true,
-                          scrollDirection: Axis.horizontal),
-                      items: [
-                        1,
-                        2,
-                        3,
-                      ].map((i) {
-                        return Builder(builder: (BuildContext context) {
-                          return Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.teal,
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Stack(children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.teal,
-                                      borderRadius:
-                                          BorderRadius.circular(10.r)),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: CachedNetworkImage(
-                                    width: dou,
-                                    fit: BoxFit.contain,
-                                    imageUrl: images[i],
-                                    placeholder: (context, url) =>
-                                        CupertinoActivityIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  left: 10,
-                                  child: Text(
-                                    "Adds ${i}",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ]));
-                        });
-                      }).toList(),
-                    ),
+
                     SizedBox(
                       height: 16.h,
                     ),
