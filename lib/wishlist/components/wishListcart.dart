@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -44,11 +45,16 @@ class _WishCartState extends State<WishCart> {
                       padding: const EdgeInsets.only(bottom: 6.0),
                       child: Row(
                         children: [
-                          Text(
-                            "${widget.snap['postTitle']}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.h,
+                          SizedBox(
+                            width: 160.w,
+                            child: Text(
+                              "${widget.snap['postTitle']}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.h,
+                              ),
                             ),
                           ),
                         ],
@@ -56,18 +62,12 @@ class _WishCartState extends State<WishCart> {
                     ),
                     trailing: Column(
                       children: [
-                        Container(
-                          width: 40.w,
-                          height: 20.h,
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(2.r)),
-                          child: Text(
+                        Chip(
+                          label: Text(
                             "Buy",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700),
+                            style: TextStyle(color: Colors.white),
                           ),
+                          avatar: Icon(FontAwesomeIcons.circle),
                         ),
                         Text(
                           DateFormat.yMMMd().format(
