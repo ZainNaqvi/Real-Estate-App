@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/feed/feedScreen.dart';
 
 import '../widget/bottomnavigation/bottomappbar.dart';
 
@@ -32,9 +33,15 @@ class PopularPageScreen extends StatelessWidget {
                     left: 10.w,
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.white,
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => FeedScreen()));
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),

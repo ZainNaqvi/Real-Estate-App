@@ -134,7 +134,27 @@ class _BodyState extends State<Body> {
               ),
               Divider(),
               customListTIle(
-                press: () {},
+                press: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 200.h,
+                        margin: EdgeInsets.symmetric(
+                            vertical: 210.h, horizontal: 14.w),
+                        child: AlertDialog(
+                          title: Text("Appearance"),
+                          content: Column(
+                            children: [
+                              Text("Light Theme"),
+                              Text("Dark Theme"),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
                 leading: Icons.remove_red_eye,
                 text: "Appearance",
                 trailing: Icons.arrow_forward_ios_outlined,
