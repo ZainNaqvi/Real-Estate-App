@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class customCard extends StatelessWidget {
-  const customCard({
+  final image;
+  final title;
+  final type;
+  customCard({
     Key? key,
+    required this.image,
+    required this.title,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -22,7 +28,7 @@ class customCard extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
                 key: UniqueKey(),
-                'assets/images/eral.jpg',
+                '${image}',
                 fit: BoxFit.fill,
               ),
               shape: RoundedRectangleBorder(
@@ -68,7 +74,7 @@ class customCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                                 border: Border.all(color: Colors.green)),
                             child: Text(
-                              'Apartment',
+                              type,
                               style: TextStyle(color: Colors.green[900]),
                             ),
                           ),
@@ -98,7 +104,7 @@ class customCard extends StatelessWidget {
                       height: 8.h,
                     ),
                     Text(
-                      "Owent Apartment",
+                      title,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,

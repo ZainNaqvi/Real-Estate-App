@@ -193,9 +193,18 @@ class _BodyState extends State<Body> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          customCard(),
-                          customCard(),
-                          customCard(),
+                          customCard(
+                              image: "assets/images/home3.jpg",
+                              title: "Owent Apartment",
+                              type: "Apartment"),
+                          customCard(
+                              image: "assets/images/home2.jpg",
+                              title: "Shophouse",
+                              type: "Apartment"),
+                          customCard(
+                              image: "assets/images/eral.jpg",
+                              title: "Penthouses",
+                              type: "Apartment"),
                         ],
                       ),
                     ),
@@ -214,15 +223,26 @@ class _BodyState extends State<Body> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
-                          customCard(),
+                          customCard(
+                            image: "assets/images/home6.jpg",
+                            title: "Multifamily Homes",
+                            type: "House",
+                          ),
+                          customCard(
+                            image: "assets/images/home4.png",
+                            title: "Townhomes",
+                            type: "House",
+                          ),
+                          customCard(
+                            image: "assets/images/home5.jpg",
+                            title: "Tiny Home",
+                            type: "House",
+                          ),
+                          customCard(
+                            image: "assets/images/home6.jpg",
+                            title: "Single-Family Homes",
+                            type: "House",
+                          ),
                         ],
                       ),
                     ),
