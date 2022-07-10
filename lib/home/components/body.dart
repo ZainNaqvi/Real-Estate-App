@@ -8,6 +8,7 @@ import 'package:houses_olx/home/components/header.dart';
 import 'package:houses_olx/home/components/menuHouses.dart';
 import 'package:houses_olx/home/components/productHeading.dart';
 import 'package:houses_olx/house/house.dart';
+import 'package:houses_olx/popularPage/popularHouse.dart';
 
 import 'package:provider/provider.dart';
 
@@ -194,17 +195,47 @@ class _BodyState extends State<Body> {
                       child: Row(
                         children: [
                           customCard(
-                              image: "assets/images/home3.jpg",
-                              title: "Owent Apartment",
-                              type: "Apartment"),
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home3.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Owent Apartment",
+                                      )));
+                            },
+                            image: "assets/images/home3.jpg",
+                            title: "Owent Apartment",
+                            type: "Apartment",
+                          ),
                           customCard(
-                              image: "assets/images/home2.jpg",
-                              title: "Shophouse",
-                              type: "Apartment"),
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home2.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Shophouse",
+                                      )));
+                            },
+                            image: "assets/images/home2.jpg",
+                            title: "Shophouse",
+                            type: "Apartment",
+                          ),
                           customCard(
-                              image: "assets/images/eral.jpg",
-                              title: "Penthouses",
-                              type: "Apartment"),
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/eral.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Penthouses",
+                                      )));
+                            },
+                            image: "assets/images/eral.jpg",
+                            title: "Penthouses",
+                            type: "Apartment",
+                          ),
                         ],
                       ),
                     ),
@@ -224,21 +255,57 @@ class _BodyState extends State<Body> {
                       child: Row(
                         children: [
                           customCard(
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home6.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Multifamily Homes",
+                                      )));
+                            },
                             image: "assets/images/home6.jpg",
                             title: "Multifamily Homes",
                             type: "House",
                           ),
                           customCard(
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home4.png",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Townhomes",
+                                      )));
+                            },
                             image: "assets/images/home4.png",
                             title: "Townhomes",
                             type: "House",
                           ),
                           customCard(
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home5.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Tiny Home",
+                                      )));
+                            },
                             image: "assets/images/home5.jpg",
                             title: "Tiny Home",
                             type: "House",
                           ),
                           customCard(
+                            press: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PopularPageScreen(
+                                        image: "assets/images/home6.jpg",
+                                        location: "Islamabad G6/2",
+                                        price: "12323 price",
+                                        title: "Single-Family Homes",
+                                      )));
+                            },
                             image: "assets/images/home6.jpg",
                             title: "Single-Family Homes",
                             type: "House",
