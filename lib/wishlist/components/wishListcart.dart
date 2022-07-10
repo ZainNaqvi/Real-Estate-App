@@ -94,14 +94,25 @@ class _WishCartState extends State<WishCart> {
                         SizedBox(height: 5.h),
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Text(
-                            "${widget.snap['postPrice']} Price",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.justify,
+                          child: Row(
+                            children: [
+                              Text(
+                                "${widget.snap['postPrice']}",
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Color.fromARGB(255, 19, 18, 18),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                              Text(
+                                " Price",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(

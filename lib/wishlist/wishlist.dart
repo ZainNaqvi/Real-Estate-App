@@ -29,6 +29,8 @@ class _WishListScreenState extends State<WishListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.transparent),
+        leading: null,
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
