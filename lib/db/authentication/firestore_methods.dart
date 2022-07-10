@@ -98,10 +98,37 @@ class FirestoreMethods {
   }
 
   // editin
-  Future updateUserData({required String name, required String uid}) async {
+  Future<String> updateUserData(
+      {required String name,
+      required String country,
+      required String age,
+      required String phoneNo,
+      required String address,
+      required String cnic,
+      required String email,
+      required String gender,
+      required String lastName,
+      required String profilePic,
+      required String uid}) async {
+    String res = "Some error occured";
     // this is the function that has to edit the username
-    return await _firebaseFirestore.collection('users').doc(uid).set({
-      'first': name,
-    });
+    try {
+      await _firebaseFirestore.collection('users').doc(uid).set({
+        'fullName': name,
+        "country": country,
+        "age": age,
+        "phoneNo": phoneNo,
+        "address": address,
+        "lastName": lastName,
+        "email": email,
+        "cnic": cnic,
+        "profilePic": profilePic,
+        "uid": uid,
+      });
+      res = "success";
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
   }
 }
