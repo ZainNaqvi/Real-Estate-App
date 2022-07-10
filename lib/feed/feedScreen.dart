@@ -120,7 +120,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 });
               },
               icon: Icon(
-                FontAwesomeIcons.images,
+                FontAwesomeIcons.heart,
                 color: _page == 3
                     ? Colors.green.withOpacity(0.5)
                     : Color(0xFFB6B6B6B6),

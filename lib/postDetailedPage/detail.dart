@@ -18,7 +18,7 @@ class PostDetailedPage extends StatelessWidget {
           snap: snap,
         ),
       ),
-      bottomNavigationBar: bottomapp(snap: snap),
+      bottomNavigationBar: bottomapp(context: context, snap: snap),
     );
   }
 }

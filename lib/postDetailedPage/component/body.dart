@@ -4,13 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:houses_olx/db/authentication/firestore_methods.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final snap;
   Body({
     Key? key,
     required this.snap,
   }) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -21,7 +26,7 @@ class Body extends StatelessWidget {
               height: 300.h,
               width: double.infinity,
               child: CachedNetworkImage(
-                imageUrl: snap!["postURL"],
+                imageUrl: widget.snap!["postURL"],
               ),
             ),
             Positioned(
@@ -30,9 +35,9 @@ class Body extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   FirestoreMethods().likePost(
-                      postId: snap!["postId"],
-                      uid: snap!["uid"],
-                      like: snap!["likes"]);
+                      postId: widget.snap!["postId"],
+                      uid: widget.snap!["uid"],
+                      like: widget.snap!["likes"]);
                 },
                 child: Container(
                   width: 115.w,
@@ -69,7 +74,7 @@ class Body extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.r),
                           border: Border.all(color: Colors.green)),
                       child: Text(
-                        snap!["houseType"],
+                        widget.snap!["houseType"],
                         style: TextStyle(color: Colors.green),
                       ),
                     ),
@@ -83,7 +88,7 @@ class Body extends StatelessWidget {
                       SizedBox(
                         width: 8.w,
                       ),
-                      Text(snap!["likes"].length.toString() + " Likes"),
+                      likes(),
                     ],
                   ),
                 ],
@@ -92,7 +97,7 @@ class Body extends StatelessWidget {
                 height: 14.h,
               ),
               Text(
-                snap!["title"],
+                widget.snap!["title"],
                 style: TextStyle(
                   fontSize: 28.sp,
                   fontWeight: FontWeight.w600,
@@ -110,7 +115,7 @@ class Body extends StatelessWidget {
                   SizedBox(
                     width: 4.w,
                   ),
-                  Text(snap!["location"]),
+                  Text(widget.snap!["location"]),
                 ],
               ),
               SizedBox(
@@ -120,14 +125,16 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   statsHouse(
-                      iconData: Icons.bed, items: snap!["beds"], title: "Beds"),
+                      iconData: Icons.bed,
+                      items: widget.snap!["beds"],
+                      title: "Beds"),
                   statsHouse(
                       iconData: Icons.bathroom,
-                      items: snap!["rooms"],
+                      items: widget.snap!["rooms"],
                       title: "Rooms"),
                   statsHouse(
                       iconData: Icons.expand,
-                      items: snap!["sqft"],
+                      items: widget.snap!["sqft"],
                       title: "sqft"),
                 ],
               ),
@@ -140,8 +147,8 @@ class Body extends StatelessWidget {
               ),
               ListTile(
                 leading: CircleAvatar(),
-                title: Text(snap!["userName"]),
-                subtitle: Text(snap!["useremail"]),
+                title: Text(widget.snap!["userName"]),
+                subtitle: Text(widget.snap!["useremail"]),
                 trailing: Icon(FontAwesomeIcons.phone),
               ),
               SizedBox(
@@ -158,7 +165,7 @@ class Body extends StatelessWidget {
                 height: 16.h,
               ),
               Text(
-                snap!["overview"],
+                widget.snap!["overview"],
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
@@ -175,7 +182,7 @@ class Body extends StatelessWidget {
                     "Status",
                     style: TextStyle(fontSize: 16.sp),
                   ),
-                  Text(snap!["houseStatus"]),
+                  Text(widget.snap!["houseStatus"]),
                 ],
               ),
               SizedBox(
@@ -185,7 +192,7 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text("Contact Number", style: TextStyle(fontSize: 16.sp)),
-                  Text(snap!["contactnumber"]),
+                  Text(widget.snap!["contactnumber"]),
                 ],
               ),
               SizedBox(
@@ -196,6 +203,11 @@ class Body extends StatelessWidget {
         ),
       ]),
     );
+  }
+
+  Widget likes() {
+    setState(() {});
+    return Text("${widget.snap!["likes"].length} Likes");
   }
 
   Widget statsHouse({

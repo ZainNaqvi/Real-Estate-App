@@ -12,6 +12,7 @@ class UserCreaditials {
   final age;
   final country;
   final profilePic;
+  // final List cart;
   // creating the constructor here...
   UserCreaditials({
     required this.profilePic,
@@ -25,6 +26,7 @@ class UserCreaditials {
     required this.age,
     required this.country,
     required this.cnic,
+    // required this.cart,
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
@@ -39,6 +41,7 @@ class UserCreaditials {
         "gender": gender,
         "age": age,
         "country": country,
+        "cart": [],
       };
   static UserCreaditials fromSnap(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
@@ -54,6 +57,7 @@ class UserCreaditials {
       country: snapshot['country'],
       gender: snapshot['gender'],
       phoneNo: snapshot['phoneNo'],
+      // cart: snapshot['cart'],
     );
   }
 }

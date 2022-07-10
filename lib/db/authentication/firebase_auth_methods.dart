@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:houses_olx/db/authentication/storage_methods.dart';
 import 'package:houses_olx/models/users.dart';
 import 'package:houses_olx/widget/customSnakeBar.dart';
+import 'package:uuid/uuid.dart';
 // ignore: avoid_web_libraries_in_flutter
 // import 'dart:html' as html;
 
@@ -98,6 +99,7 @@ class FirebaseAuthMethods {
     required String age,
     required String gender,
     required BuildContext context,
+    // required List? cart,
   }) async {
     String res = "Some error occured";
     try {
@@ -115,6 +117,7 @@ class FirebaseAuthMethods {
         country: country,
         cnic: cnic,
         phoneNo: phoneNumber,
+        // cart: cart!,
       );
       _firebaseFirestore
           .collection("users")
@@ -209,6 +212,41 @@ class FirebaseAuthMethods {
     } catch (e) {
       res = e.toString();
     }
+    return res;
+  }
+
+  // post comments
+  Future<String> addToCart({
+    required String uid,
+    required String postId,
+    required String postPic,
+    required String postPrice,
+    required String postTitle,
+    required String postLocation,
+  }) async {
+    String res = "Some error Occured";
+    try {
+      String cartId = Uuid().v1();
+      await _firebaseFirestore
+          .collection('users')
+          .doc(uid)
+          .collection("cart")
+          .doc(cartId)
+          .set({
+        "cartId": cartId,
+        "uid": uid,
+        "postId": postId,
+        "postPic": postPic,
+        "postPrice": postPrice,
+        "postTitle": postTitle,
+        "postLocation": postLocation,
+        "datePublished": DateTime.now(),
+      });
+      res = "The item is added to the wishlist.";
+    } catch (err) {
+      res = err.toString();
+    }
+
     return res;
   }
 }
