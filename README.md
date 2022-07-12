@@ -1,16 +1,25 @@
-# houses_olx
+<p align="left">
+<img src="apppic/Capture1.PNG"/>
+<img src="apppic/Capture2.PNG"/>
+<img src="apppic/Capture3.PNG"/>
+<img src="apppic/Capture4.PNG"/>
+<img src="apppic/Capture5.PNG"/>
+<img src="apppic/Capture6.PNG"/>
+<img src="apppic/Capture7.PNG"/>
+<img src="apppic/Capture8.PNG"/>
+<img src="apppic/Capture9.PNG"/>
+<img src="apppic/Capture10.PNG"/>
+<img src="apppic/Capture11.PNG"/>
+<img src="apppic/Capture12.PNG"/>
+<img src="apppic/Capture13.PNG"/>
+<img src="apppic/Capture14.PNG"/>
+<img src="apppic/Capture15.PNG"/>
+<img src="apppic/Capture16.PNG"/>
+<img src="apppic/Capture17.PNG"/>
+<img src="apppic/Capture18.PNG"/>
+<img src="apppic/Capture19.PNG"/>
+<img src="apppic/Capture20.PNG"/>
+<img src="apppic/Capture21.PNG"/>
+<img src="apppic/Capture22.PNG"/>
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</p>
