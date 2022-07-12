@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/feed/feedScreen.dart';
@@ -84,16 +85,9 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
             height: 16.h,
           ),
           Center(
-              child: SizedBox(
-            width: 50.w,
-            child: LinearProgressIndicator(color: Colors.green),
+              child: CupertinoActivityIndicator(
+            color: Colors.teal,
           )),
-
-          // Lottie.asset(
-          //   "assets/lottie/loader.json",
-          //   height: 120.h,
-          //   width: 120.w,
-          // ),
         ],
       ),
     );
