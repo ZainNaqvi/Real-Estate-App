@@ -114,9 +114,7 @@ class _formState extends State<form> {
                         )
                       : CircleAvatar(
                           key: UniqueKey(),
-                          backgroundImage:
-                              NetworkImage("assets/images/default-profile.jpg"),
-                          backgroundColor: Colors.white.withOpacity(0.13),
+                          backgroundColor: Colors.black,
                           radius: 50,
                         ),
                 ),
@@ -128,13 +126,10 @@ class _formState extends State<form> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.black.withOpacity(0.04),
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    child: SvgPicture.asset(
-                      "assets/icons/camera.svg",
-                      color: Colors.white,
-                    ),
+                    child: Icon(Icons.camera),
                   ),
                 ),
               ],
