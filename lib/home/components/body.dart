@@ -26,7 +26,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     addData();
-    // _getCurrentLocation();
+    _getCurrentLocation();
     super.initState();
   }
 
@@ -36,40 +36,41 @@ class _BodyState extends State<Body> {
     await userProviders.refreshUser();
   }
 
-  // Position? _currentPosition;
-  // String? _currentAddress;
-  // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  // _getCurrentLocation() {
-  //   geolocator
-  //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-  //       .then((Position position) {
-  //     setState(() {
-  //       _currentPosition = position;
-  //     });
+  Position? _currentPosition;
+  String? _currentAddress;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
 
-  //     _getAddressFromLatLng();
-  //   }).catchError((e) {
-  //     print(e);
-  //   });
-  // }
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
-  // _getAddressFromLatLng() async {
-  //   try {
-  //     List<Placemark> p = await geolocator.placemarkFromCoordinates(
-  //         _currentPosition!.latitude, _currentPosition!.longitude);
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition!.latitude, _currentPosition!.longitude);
 
-  //     Placemark place = p[0];
+      Placemark place = p[0];
 
-  //     setState(() {
-  //       _currentAddress =
-  //           "${place.locality} ${place.postalCode}, ${place.country}";
-  //     });
-  //     print(_currentAddress);
-  //     print(_currentPosition);
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+      setState(() {
+        _currentAddress =
+            "${place.locality} ${place.postalCode}, ${place.country}";
+      });
+      print(_currentAddress);
+      print(_currentPosition);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   List text = [
     "Find Real Estate Websites Canada\nat Shopwebly, the Website to Compare Prices!\nFind and Compare Real Estate\nWebsites Canada Online. Save Now\nat Shopwebly! Easy Acces ",
     "Search Quality Answers Now. Get The Best\nResult With ZapMeta About Quality\nAnswers Now. Find More Vancouver Real Estate Agent.\nZapMeta Offers The Overview from 6 E",
@@ -86,8 +87,8 @@ class _BodyState extends State<Body> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // header(_currentAddress!),
-                    header(context),
+                    header(context, _currentAddress!),
+                    // header(context),
                     SizedBox(
                       height: 16.h,
                     ),

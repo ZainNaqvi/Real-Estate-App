@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:houses_olx/adminPage/adminPage.dart';
+import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/userProviders.dart';
 
-Row header(BuildContext context) {
+Row header(BuildContext context, String locaiton) {
   var creaditials = Provider.of<UserProviders>(context).getUser;
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,7 +45,7 @@ Row header(BuildContext context) {
                 width: 16.w,
               ),
               Text(
-                "Wah cantt , Pakistan",
+                locaiton,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18.sp,
