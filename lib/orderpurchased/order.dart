@@ -16,7 +16,7 @@ class Order extends StatelessWidget {
         Center(
           child: Lottie.asset(
             "assets/lottie/purchased.json",
-            height: 190.h,
+            height: 200.h,
             width: 190.w,
           ),
         ),

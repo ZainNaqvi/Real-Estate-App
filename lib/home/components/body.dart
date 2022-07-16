@@ -87,7 +87,7 @@ class _BodyState extends State<Body> {
                 child: Column(
                   children: [
                     // header(_currentAddress!),
-                    header(),
+                    header(context),
                     SizedBox(
                       height: 16.h,
                     ),

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:houses_olx/adminPage/adminPage.dart';
+import 'package:provider/provider.dart';
 
-Row header() {
+import '../../provider/userProviders.dart';
+
+Row header(BuildContext context) {
+  var creaditials = Provider.of<UserProviders>(context).getUser;
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -50,18 +55,31 @@ Row header() {
           ),
         ],
       ),
-      Container(
-          width: 44.w,
-          height: 44.h,
-          decoration: BoxDecoration(
-              color: Colors.green.withOpacity(
-                0.04,
-              ),
-              borderRadius: BorderRadius.circular(10.r)),
-          child: Icon(
-            Icons.notifications,
-            color: Colors.green,
-          )),
+      UserProviders().isLoading
+          ? CircularProgressIndicator()
+          : Container(
+              width: 44.w,
+              height: 44.h,
+              decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(
+                    0.04,
+                  ),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: creaditials.email == "syedzainnaqvi3324@gmail.com"
+                  ? IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyAdminPage()));
+                      },
+                      icon: Icon(
+                        Icons.admin_panel_settings_outlined,
+                        color: Colors.green,
+                      ))
+                  : Icon(
+                      Icons.location_on,
+                      color: Colors.green,
+                    ),
+            ),
     ],
   );
 }
