@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 44.w, vertical: 24.h),
-              child: Image.asset("assets/images/logo.png"),
+              child: Image.asset("assets/images/logo2.jpg"),
             ),
             Text(
               "Sign in to your account",
