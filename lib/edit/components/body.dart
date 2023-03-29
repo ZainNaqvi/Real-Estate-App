@@ -152,16 +152,16 @@ class _BodyState extends State<Body> {
 
                           var res = await FirestoreMethods().updateUserData(
                             name: _userName.text,
-                            country: creaditials.country,
-                            age: creaditials.age,
+                            country: creaditials.country??'',
+                            age: creaditials.age??'',
                             phoneNo: _userPhone.text,
                             address: _userAddress.text,
-                            gender: creaditials.gender,
+                            gender: creaditials.gender??'',
                             uid: FirebaseAuth.instance.currentUser!.uid,
-                            cnic: creaditials.cnic,
-                            email: creaditials.email,
-                            lastName: creaditials.lastName,
-                            profilePic: creaditials.profilePic,
+                            cnic: creaditials.cnic??'',
+                            email: creaditials.email??'',
+                            lastName: creaditials.lastName??'',
+                            profilePic: creaditials.profilePic??'',
                           );
                           if (res == "success") {
                             showSnakeBar(

@@ -44,7 +44,7 @@ class _BodyState extends State<Body> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4.r),
                         color: Colors.green.withOpacity(0.04)),
-                    child: Icon(
+                    child: const Icon(
                       Icons.settings,
                       color: Colors.green,
                     ),
@@ -59,10 +59,10 @@ class _BodyState extends State<Body> {
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      CircleAvatar(
+                 userCreaditials.profilePic==null?SizedBox():     CircleAvatar(
                         radius: 50,
                         backgroundImage:
-                            NetworkImage(userCreaditials.profilePic),
+                            NetworkImage(userCreaditials.profilePic!),
                       ),
                       Positioned(
                         bottom: 0,
@@ -72,11 +72,11 @@ class _BodyState extends State<Body> {
                             Container(
                               width: 44.w,
                               height: 44.h,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.black38,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.edit,
                                 color: Colors.green,
                               ),
@@ -93,7 +93,7 @@ class _BodyState extends State<Body> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        userCreaditials.fullname,
+                        userCreaditials.fullname??'',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.sp,
@@ -104,11 +104,11 @@ class _BodyState extends State<Body> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Text(userCreaditials.email),
+                      Text(userCreaditials.email??''),
                       SizedBox(
                         height: 8.h,
                       ),
-                      Text(userCreaditials.country),
+                      Text(userCreaditials.country??''),
                     ],
                   ),
                 ],
@@ -116,7 +116,7 @@ class _BodyState extends State<Body> {
               SizedBox(
                 height: 16.h,
               ),
-              Divider(),
+              const Divider(),
               SizedBox(
                 height: 24.h,
               ),
@@ -132,7 +132,7 @@ class _BodyState extends State<Body> {
                 text: "Edit Profile",
                 trailing: Icons.arrow_forward_ios_outlined,
               ),
-              Divider(),
+              const Divider(),
               customListTIle(
                 press: () {
                   showDialog(
@@ -143,11 +143,11 @@ class _BodyState extends State<Body> {
                         margin: EdgeInsets.symmetric(
                             vertical: 210.h, horizontal: 14.w),
                         child: AlertDialog(
-                          title: Text("Appearance"),
+                          title: const Text("Appearance"),
                           content: Column(
                             children: [
-                              Text("Light Theme"),
-                              Text("Dark Theme"),
+                              const Text("Light Theme"),
+                              const Text("Dark Theme"),
                             ],
                           ),
                         ),
@@ -159,14 +159,14 @@ class _BodyState extends State<Body> {
                 text: "Appearance",
                 trailing: Icons.arrow_forward_ios_outlined,
               ),
-              Divider(),
+              const Divider(),
               customListTIle(
                 press: () {},
                 leading: Icons.person,
                 text: "Invite Friend",
                 trailing: Icons.arrow_forward_ios_outlined,
               ),
-              Divider(),
+              const Divider(),
               customListTIle(
                 press: () {
                   FirebaseAuthMethods().signOut();
@@ -180,7 +180,7 @@ class _BodyState extends State<Body> {
                 text: "Logout",
                 trailing: null,
               ),
-              Divider(),
+              const Divider(),
             ],
           ),
         ),

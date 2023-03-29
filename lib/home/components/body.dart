@@ -23,9 +23,9 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  bool isLoading = false;
   @override
   void initState() {
-    addData();
     _getCurrentLocation();
     super.initState();
   }
@@ -40,6 +40,10 @@ class _BodyState extends State<Body> {
   String? _currentAddress;
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   _getCurrentLocation() {
+    setState(() {
+      isLoading = true;
+    });
+    addData();
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
@@ -48,8 +52,14 @@ class _BodyState extends State<Body> {
       });
 
       _getAddressFromLatLng();
+      setState(() {
+        isLoading = false;
+      });
     }).catchError((e) {
       print(e);
+      setState(() {
+        isLoading = false;
+      });
     });
   }
 
@@ -80,14 +90,15 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: UserProviders().isLoading
+      child: isLoading
           ? Center(child: CupertinoActivityIndicator())
           : Padding(
               padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, top: 16.h),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    header(context, _currentAddress!),
+                _currentAddress==null? Center(child: CupertinoActivityIndicator())
+                        :    header(context, _currentAddress!),
                     // header(context),
                     SizedBox(
                       height: 16.h,

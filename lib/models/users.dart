@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserCreaditials {
-  final fullname;
-  final lastName;
-  final uid;
-  final email;
-  final phoneNo;
-  final address;
-  final cnic;
-  final gender;
-  final age;
-  final country;
-  final profilePic;
+  final String? fullname;
+  final String?lastName;
+  final String? uid;
+  final String?email;
+  final String?phoneNo;
+  final String?address;
+  final String?cnic;
+  final String?gender;
+  final String?age;
+  final String?country;
+  final String?profilePic;
   // final List cart;
   // creating the constructor here...
   UserCreaditials({

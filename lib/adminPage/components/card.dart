@@ -25,7 +25,7 @@ adminCard(BuildContext context, snap) {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(userCreaditials.profilePic),
+                    backgroundImage: NetworkImage(userCreaditials.profilePic??''),
                   ),
                   Positioned(
                     bottom: 0,
@@ -56,7 +56,7 @@ adminCard(BuildContext context, snap) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    userCreaditials.fullname,
+                    userCreaditials.fullname??'',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.sp,
@@ -67,11 +67,11 @@ adminCard(BuildContext context, snap) {
                   SizedBox(
                     height: 8.h,
                   ),
-                  Text(userCreaditials.email),
+                  Text(userCreaditials.email??''),
                   SizedBox(
                     height: 8.h,
                   ),
-                  Text(userCreaditials.country),
+                  Text(userCreaditials.country??''),
                 ],
               ),
             ],
